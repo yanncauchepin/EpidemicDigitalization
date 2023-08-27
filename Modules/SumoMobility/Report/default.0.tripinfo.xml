@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2023-06-07 09:00:54 by Eclipse SUMO GUI Version 1.12.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="/home/yanncauchepin/Git/EpidemicDigitalization/Modules/SumoMobility/SumoFiles/network.net.xml"/>
+        <route-files value="/home/yanncauchepin/Git/EpidemicDigitalization/Modules/SumoMobility/SumoFiles/default.0.people.routes.xml,/home/yanncauchepin/Git/EpidemicDigitalization/Modules/SumoMobility/SumoFiles/pt.routes.xml"/>
+        <additional-files value="/home/yanncauchepin/Git/EpidemicDigitalization/Modules/SumoMobility/SumoFiles/polygons.poly.xml,/home/yanncauchepin/Git/EpidemicDigitalization/Modules/SumoMobility/SumoFiles/pt.stops.xml"/>
+    </input>
+
+    <output>
+        <person-summary-output value="/home/yanncauchepin/Git/EpidemicDigitalization/Modules/SumoMobility/Report/default.0.timestate.xml"/>
+        <tripinfo-output value="/home/yanncauchepin/Git/EpidemicDigitalization/Modules/SumoMobility/Report/default.0.tripinfo.xml"/>
+    </output>
+
+    <processing>
+        <threads value="40"/>
+        <ignore-accidents value="true"/>
+        <collision.action value="teleport"/>
+        <pedestrian.model value="nonInteracting"/>
+    </processing>
+
+    <report>
+        <verbose value="true"/>
+        <no-step-log value="true"/>
+    </report>
+
+    <gui_only>
+        <gui-settings-file value="/home/yanncauchepin/Git/EpidemicDigitalization/Modules/SumoMobility/SumoFiles/spreading.view.xml"/>
+        <quit-on-end value="true"/>
+        <start value="true"/>
+    </gui_only>
+
+</configuration>
+-->
+
+<tripinfos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/tripinfo_file.xsd">
+</tripinfos>

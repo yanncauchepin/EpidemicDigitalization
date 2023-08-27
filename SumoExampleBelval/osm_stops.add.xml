@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on Mon Mar 22 13:06:22 2021 by Eclipse SUMO netconvert Version 1.8.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <type-files value="/usr/share/sumo/data/typemap/osmNetconvert.typ.xml,/usr/share/sumo/data/typemap/osmNetconvertUrbanDe.typ.xml,/usr/share/sumo/data/typemap/osmNetconvertPedestrians.typ.xml"/>
+        <osm-files value="osm_bbox.osm.xml"/>
+    </input>
+
+    <output>
+        <output-file value="osm.net.xml"/>
+        <output.street-names value="true"/>
+        <output.original-names value="true"/>
+        <ptstop-output value="osm_stops.add.xml"/>
+        <ptline-output value="osm_ptlines.xml"/>
+    </output>
+
+    <projection>
+        <proj.utm value="true"/>
+    </projection>
+
+    <processing>
+        <geometry.remove value="true"/>
+        <roundabouts.guess value="true"/>
+    </processing>
+
+    <tls_building>
+        <tls.discard-simple value="true"/>
+        <tls.join value="true"/>
+        <tls.guess-signals value="true"/>
+        <tls.default-type value="actuated"/>
+    </tls_building>
+
+    <ramp_guessing>
+        <ramps.guess value="true"/>
+    </ramp_guessing>
+
+    <junctions>
+        <junctions.join value="true"/>
+        <junctions.corner-detail value="5"/>
+    </junctions>
+
+    <pedestrian>
+        <crossings.guess value="true"/>
+    </pedestrian>
+
+    <railway>
+        <railway.topology.repair value="true"/>
+        <railway.topology.repair.stop-turn value="true"/>
+    </railway>
+
+    <report>
+        <verbose value="true"/>
+        <aggregate-warnings value="5"/>
+    </report>
+
+</configuration>
+-->
+
+<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
+    <busStop id="-1649300091" name="Esch, Rue Henri Koch" lane="-25210189#0_1" startPos="16.99" endPos="31.99" friendlyPos="true" lines="203 332 7"/>
+    <busStop id="-1677092127" name="Belvaux, Belval Lycée" lane="-376948774_1" startPos="22.57" endPos="37.57" friendlyPos="true" lines="322 3 15"/>
+    <busStop id="-1677096003" name="Belval" lane="-383805343_1" startPos="29.65" endPos="44.65" friendlyPos="true" lines="322 3"/>
+    <busStop id="-2126814069" name="Belval-Université" lane="-336961967_0" startPos="0.00" endPos="120.95" friendlyPos="true">
+        <access lane="259196945#0_0" pos="23.87" length="14.97" friendlyPos="1"/>
+        <access lane="259196946#0_0" pos="35.87" length="10.43" friendlyPos="1"/>
+        <access lane="259196946#1_0" pos="0.00" length="11.76" friendlyPos="1"/>
+        <access lane="646086361_0" pos="5.02" length="10.33" friendlyPos="1"/>
+        <access lane="646086362_0" pos="0.00" length="9.20" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-2360364949" name="Belvaux, Um Bedding" lane="-408845038#0_1" startPos="46.87" endPos="58.83" friendlyPos="true" lines="306 309 209 15"/>
+    <busStop id="-2360364949@8360118" name="Belvaux, Um Bedding" lane="-360827911#3_1" startPos="0.00" endPos="7.50" friendlyPos="true" lines="332"/>
+    <busStop id="-3588272882" name="Esch, Avenue du Rock’n’Roll" lane="-393764279#1_1" startPos="0.00" endPos="7.50" friendlyPos="true" lines="4 7 15"/>
+    <busStop id="-4097218576" name="Esch, Avenue du Rock’n’Roll" lane="-393764279#1_1" startPos="0.00" endPos="7.50" friendlyPos="true" lines="4 7 15"/>
+    <busStop id="-540592185" name="Belval-Rédange" lane="-43153659_0" startPos="602.73" endPos="802.73" friendlyPos="true"/>
+    <busStop id="-540592226" name="Belval-Lycée" lane="-43153658_0" startPos="0.00" endPos="29.35" friendlyPos="true">
+        <access lane="155288288_0" pos="54.01" length="27.36" friendlyPos="1"/>
+        <access lane="155288290_0" pos="20.35" length="29.10" friendlyPos="1"/>
+        <access lane="155310161_0" pos="17.55" length="14.47" friendlyPos="1"/>
+        <access lane="369544000_0" pos="2.91" length="12.17" friendlyPos="1"/>
+        <access lane="385104372#1_0" pos="29.34" length="14.64" friendlyPos="1"/>
+    </busStop>
+    <busStop id="-6212933651" name="Esch/Alzette, Porte des Sciences" lane="-227338318#0_0" startPos="2.95" endPos="17.95" friendlyPos="true" lines="306 7 309 209 4 15"/>
+    <busStop id="-6212933654" name="Esch/Alzette, Porte des Sciences" lane="-227338318#0_0" startPos="2.81" endPos="17.81" friendlyPos="true" lines="306 7 309 209 4 15"/>
+    <busStop id="-8528731983" name="Belvaux, Brill" lane="-223581247#4_1" startPos="14.13" endPos="29.13" friendlyPos="true" lines="204"/>
+    <busStop id="1115018375" name="Belvaux, Brill" lane="479037376#9_0" startPos="20.81" endPos="35.81" friendlyPos="true"/>
+    <busStop id="1115018384" name="Esch, Raemerich" lane="366838964_1" startPos="38.49" endPos="53.49" friendlyPos="true" lines="204 4 202 203 325 7 1 2 15"/>
+    <busStop id="1115018437" name="Esch, Raemerich" lane="393248497#0_1" startPos="0.00" endPos="13.94" friendlyPos="true" lines="204 1 2 202 203 325 7 4 15"/>
+    <busStop id="1115018462" name="Belvaux, Brill" lane="223581247#6_1" startPos="0.00" endPos="10.42" friendlyPos="true" lines="204 202 325 1 2"/>
+    <busStop id="1625279566" name="Esch/Alzette, Porte de France" lane="393764297#1_1" startPos="43.63" endPos="58.63" friendlyPos="true" lines="4 306 332 7 309 209"/>
+    <busStop id="1631774736" name="Belval Université" lane="155293889#3_0" startPos="20.84" endPos="27.61" friendlyPos="true" lines="3 322 209"/>
+    <busStop id="1631774736@9882620" name="Belval Université" lane="710630160#0_0" startPos="0.00" endPos="7.50" friendlyPos="true" lines="209"/>
+    <busStop id="1631828668" name="Esch, Rue des Tramways" lane="150258989#5_1" startPos="0.00" endPos="9.80" friendlyPos="true" lines="4 2"/>
+    <busStop id="1676893045" name="Belvaux, Belval Lycée" lane="376948774_1" startPos="6.47" endPos="21.47" friendlyPos="true" lines="3 322 15"/>
+    <busStop id="1676916972" name="Belval" lane="155297783_1" startPos="7.12" endPos="22.12" friendlyPos="true" lines="3 322"/>
+    <busStop id="2125968286" name="Belval-Université" lane="336961970_0" startPos="0.00" endPos="120.86" friendlyPos="true" lines="CFL-60">
+        <access lane="259196945#1_0" pos="4.37" length="7.30" friendlyPos="1"/>
+        <access lane="259196946#0_0" pos="35.45" length="9.77" friendlyPos="1"/>
+        <access lane="259196946#1_0" pos="0.00" length="11.86" friendlyPos="1"/>
+        <access lane="646086361_0" pos="5.02" length="13.72" friendlyPos="1"/>
+        <access lane="646086362_0" pos="0.20" length="13.16" friendlyPos="1"/>
+    </busStop>
+    <busStop id="2126814069" name="Belval-Université" lane="336961967_0" startPos="0.00" endPos="121.19" friendlyPos="true">
+        <access lane="259196945#0_0" pos="23.87" length="14.97" friendlyPos="1"/>
+        <access lane="259196946#0_0" pos="35.87" length="10.43" friendlyPos="1"/>
+        <access lane="259196946#1_0" pos="0.00" length="11.76" friendlyPos="1"/>
+        <access lane="646086361_0" pos="5.02" length="10.33" friendlyPos="1"/>
+        <access lane="646086362_0" pos="0.00" length="9.20" friendlyPos="1"/>
+    </busStop>
+    <busStop id="271417454" name="Belval-Lycée" lane="24978795_0" startPos="0.00" endPos="29.76" friendlyPos="true" lines="CFL-60">
+        <access lane="155288288_0" pos="56.67" length="31.96" friendlyPos="1"/>
+        <access lane="155288290_0" pos="20.35" length="26.14" friendlyPos="1"/>
+        <access lane="155310161_0" pos="17.55" length="19.61" friendlyPos="1"/>
+        <access lane="369544000_0" pos="2.91" length="16.32" friendlyPos="1"/>
+        <access lane="385104372#1_0" pos="24.83" length="12.19" friendlyPos="1"/>
+    </busStop>
+    <busStop id="271417570" name="Belval-Rédange" lane="24978806_0" startPos="709.65" endPos="909.65" friendlyPos="true" lines="CFL-60"/>
+    <busStop id="3733227187" name="Belval-Université" lane="336961970_0" startPos="40.33" endPos="55.33" friendlyPos="true" lines="TER 31">
+        <access lane="162563100_0" pos="76.59" length="16.08" friendlyPos="1"/>
+        <access lane="259196938#1_0" pos="0.00" length="16.97" friendlyPos="1"/>
+        <access lane="259196943_0" pos="0.00" length="22.73" friendlyPos="1"/>
+        <access lane="259196946#0_0" pos="7.89" length="1.54" friendlyPos="1"/>
+        <access lane="369544004_0" pos="31.24" length="20.13" friendlyPos="1"/>
+    </busStop>
+    <busStop id="3968040959" name="Esch/Alzette, Cité des Sciences" lane="227337561_1" startPos="0.00" endPos="8.03" friendlyPos="true" lines="332"/>
+    <busStop id="3968109962" name="Esch/Alzette, Cité des Sciences" lane="69353459#0_1" startPos="0.00" endPos="8.67" friendlyPos="true" lines="332"/>
+    <busStop id="4107535818" name="Esch/Alzette, Porte de France" lane="338332423#0_1" startPos="6.65" endPos="21.65" friendlyPos="true" lines="306 332 309 209"/>
+    <busStop id="4107543803" name="Belvaux, Um Bedding" lane="360827911#3_1" startPos="10.31" endPos="17.86" friendlyPos="true" lines="306 332 309 209 15"/>
+    <busStop id="4248491038" name="Esch/Alzette, Cité des Sciences" lane="69353459#0_1" startPos="0.00" endPos="7.50" friendlyPos="true" lines="332"/>
+    <busStop id="4248491039" name="Esch/Alzette, Cité des Sciences" lane="227337561_1" startPos="0.00" endPos="7.50" friendlyPos="true" lines="332"/>
+    <busStop id="4408239875" name="Belvaux, Um Bedding" lane="360827911#3_1" startPos="10.36" endPos="17.86" friendlyPos="true" lines="306 332 309 209 15"/>
+    <busStop id="4408239877" name="Esch/Alzette, Porte de France" lane="338332423#0_1" startPos="21.83" endPos="36.83" friendlyPos="true" lines="306 332 309 209"/>
+    <busStop id="4408239878" name="Esch/Alzette, Porte de France" lane="393764297#1_1" startPos="45.78" endPos="60.78" friendlyPos="true" lines="4 306 332 7 309 209"/>
+    <busStop id="4464473490" name="Esch, Tramschapp" lane="388006867#1_1" startPos="91.49" endPos="106.49" friendlyPos="true" lines="1 2 321 4 15"/>
+    <busStop id="4721178055" name="Belvaux, Lycée Bel-Val" lane="360815375#10_0" startPos="17.99" endPos="25.49" friendlyPos="true" lines="308 306 309"/>
+    <busStop id="4721178055@6112896" name="Belvaux, Lycée Bel-Val" lane="516873295#0_0" startPos="5.52" endPos="14.95" friendlyPos="true" lines="306 309"/>
+    <busStop id="5045105611" name="Belvaux, Lycée Bel-Val" lane="516873295#0_0" startPos="0.00" endPos="7.50" friendlyPos="true" lines="308 306 309"/>
+    <busStop id="5146079337" name="Esch, Tramschapp" lane="23019727#1_1" startPos="27.80" endPos="42.80" friendlyPos="true" lines="4 321 1 2 15"/>
+    <busStop id="527829779" name="Esch, Avenue du Rock’n’Roll" lane="711234499_1" startPos="29.08" endPos="36.61" friendlyPos="true" lines="7 4 15"/>
+    <busStop id="540592185" name="Belval-Rédange" lane="43153659_0" startPos="706.87" endPos="906.87" friendlyPos="true"/>
+    <busStop id="540592226" name="Belval-Lycée" lane="43153658_0" startPos="0.00" endPos="29.35" friendlyPos="true">
+        <access lane="155288288_0" pos="54.01" length="27.36" friendlyPos="1"/>
+        <access lane="155288290_0" pos="20.35" length="29.10" friendlyPos="1"/>
+        <access lane="155310161_0" pos="17.55" length="14.47" friendlyPos="1"/>
+        <access lane="369544000_0" pos="2.91" length="12.17" friendlyPos="1"/>
+        <access lane="385104372#1_0" pos="29.34" length="14.64" friendlyPos="1"/>
+    </busStop>
+    <busStop id="5670312476" name="Esch, Rue Henri Koch" lane="25210189#0_1" startPos="256.54" endPos="264.57" friendlyPos="true" lines="203 332 7"/>
+    <busStop id="6212933652" name="Esch/Alzette, Porte des Sciences" lane="393596508#0_0" startPos="33.66" endPos="46.69" friendlyPos="true" lines="4 306 7 309 209 15"/>
+    <busStop id="6212933653" name="Esch/Alzette, Porte des Sciences" lane="393596508#0_0" startPos="34.28" endPos="46.69" friendlyPos="true" lines="4 306 7 309 209 15"/>
+    <busStop id="6681188068" name="Belval Université" lane="710630160#0_0" startPos="0.00" endPos="7.50" friendlyPos="true" lines="209 3"/>
+    <busStop id="6687644239" name="Esch, Avenue du Rock’n’Roll" lane="711234499_1" startPos="29.11" endPos="36.61" friendlyPos="true" lines="7 4 15"/>
+    <busStop id="6703158141" name="Esch, Maison du Savoir" lane="713057044_1" startPos="11.61" endPos="26.61" friendlyPos="true" lines="15"/>
+    <busStop id="8528041097" name="Esch, Lycée Guillaume Kroll" lane="25210189#0_1" startPos="226.03" endPos="241.03" friendlyPos="true" lines="308"/>
+    <busStop id="8528041099" name="Esch, Lycée Guillaume Kroll" lane="25210189#0_1" startPos="225.72" endPos="240.72" friendlyPos="true" lines="308"/>
+    <busStop id="8528731981" name="Esch, Raemerich" lane="393248497#0_1" startPos="0.34" endPos="15.34" friendlyPos="true" lines="204"/>
+    <busStop id="8528731982" name="Esch, Raemerich" lane="366838964_1" startPos="41.44" endPos="56.44" friendlyPos="true" lines="204"/>
+    <busStop id="8528731984" name="Belvaux, Brill" lane="223581247#6_1" startPos="0.00" endPos="10.88" friendlyPos="true" lines="204"/>
+</additional>

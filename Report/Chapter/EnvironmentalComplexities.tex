@@ -1,0 +1,106 @@
+\chapter{Environmental complexities}
+
+\section{Overfitting of reality}
+
+By wanting to model too much, we can lose overall logic and robustness. Especially since the more we try to model in detail, the more we could be led to be interested in the personal data of individuals ; which is not the wish here.\\
+
+We may eventually be interested in finer representations of society even if we are talking about a very high level of detail. This is the case, for example, with contamination during transport. This would therefore be directly related to the capabilities of SumoMobility modeling. For example, when an airborne infection emerges in society, no individual is prepared to protect themselves from contamination and avoid proximity. Proximity is an integral part of collective functioning but the use of sanitary masks is not omnipresent, especially at the beginning of the spread. The question to be asked is therefore whether it is really necessary to model ambient air contamination. However, we can draw a parallel with overfitting to make the link between a neural network and dynamic digitalization. SumoMobility is designed to walk from point A to point B without stopping. At a pinch, we could find a landmark by observing the collisions of individuals on the same pedestrian lane ; It would then be necessary to launch an interactive execution, which as a reminder can significantly cause errors and uncertainties in the scenarios between spaces.\\
+
+From a realistic point of view, one could question the contamination within personal cars when the driver is accompanied. It seems absurd to approach such a level of detail. This would be a non-essential detail, which would ultimately diminish the robustness of the modeling. Especially since the people accompanying the driver are then very often linked by family ties or already rub shoulders regularly in the spaces we consider.\\
+
+\newpage
+
+\section{Evolution and competition of infections}
+
+In the environment, the coexistence of several infections takes place according to two different events :\\
+
+\begin{itemize}
+\item The random mutation of an infectious agent that already exists in the environment ; Each infection will then be characterized by parameters related to the frequency of mutation during a new contamination, and by its magnitude on its original characteristics. For simplicity, the appearance of a mutation would occur when an individual exceeds a contamination threshold and enters the incubation phase. According to Bernoulli's law, it can then become the host of a new infectious agent with characteristics similar to the infection it has contaminated. Among these new characteristics, it is possible to observe a contamination threshold different from the original, which would then be applied to the next individual that it contaminates. It is of course possible to remove the possibility of a transfer.
+\item The manual and programmable introduction of a new infectious agent, with characteristics completely independent of current infections. By deriving the concept a little, we can then manually program the variant of a pre-existing infection, thus mastering the new modified characteristics. This introduction can be programmed on a particular day in the simulation, or when society reaches a certain state.\\
+\end{itemize}
+
+Note that it is enough to reduce the contamination threshold of an infection to make the pathogen more contagious, reduce the threshold of the level of its serious condition to aggravate its virulence and increase the persistence time of particles in the body or in spaces to increase its resistance. It is therefore quite easy to evolve each infectious agent. This is what brings flexibility to the infectious implementation.\\
+
+\newpage
+
+\section{Diversity of society}
+
+The environment must make it possible to include individuals with unusual behaviours. The interest is to amplify the Brownian motion of the epidemic spread in society and to make the digitalization of society very unpredictable. For example, visitors can be represented in prisons in order to better initiate the spread in prisons. Although the individual assessment can be complicated, we can also represent delivery people who cross a lot of space in a day by staying there for very little time. In a similar type of daily life, we can also represent emergency services such as gendarmes, firefighters or emergency medical personnel. Not to mention, for example, gatherings between friends or family. As a general rule, it is necessary to be able to integrate a great diversity in the scenario of individuals, especially for unusual events. Examples include diplomatic sites, burial sites, nativity scenes, car garages, etc. The advantage of the space database is that you can choose from all the spaces listed, without neglecting some of them. It can therefore be interesting to introduce totally random scenarios, which can even go through several dwellings in the same day. A bit like real estate agents. This is certainly not rational but it can contribute to the Brownian motion of pathogens, and potentially bring a better elasticity of dynamics.\\
+
+The project can therefore draw inspiration from the daily lives of individuals, while modeling non-ordinary behavior through completely random scenarios. We can dissociate two different representations :\\
+
+\begin{itemize}
+\item Either each individual would have a certain ratio of ordinary scenarios and totally random scenarios.
+\item Either we would rationally model a certain population whose scenarios would be totally random.\\
+\end{itemize}
+
+In these two options, the unpredictable and random factor is executed significantly differently. In the long run, digitalization can approach reality while removing the infinite complexity of modeling the diversity of everyday life. On the other hand, over a short period of observation, where one wishes to choose a decision according to the state of society, this can sufficiently influence the program by a very random parameter.\\
+
+\newpage
+
+\section{Evolution of parameters}
+
+In static digitalization, we can question the evolution of individuals. From a pragmatic point of view, it does not seem interesting in a primary version to model births and non-infectious deaths of the environment. On the other hand, it would be an interesting avenue for a demographic side project. Here the interest would be more to evolve the individual base of each. This would involve representing the probabilities of moving and the hiring statistics.\\
+
+With the execution of dynamic digitalization, we can identify economic and health issues.\\
+
+In terms of space, it would be interesting to remove bankrupt economic sites due to overly restrictive decisions. It would then be necessary to produce a critical evaluation from which space would be removed in the development of scenarios.\\
+
+Many parameters are important to take into account in terms of infection. First of all, the evolution of available resources, which can represent an important space for definition. In addition, with care, testing and vaccination, we will choose the rational point of view to set their parameters on the duration of digitalization. But it is necessary to think about the parameters of these elements when adding them during execution: this is the case possible when a new mutation infection appears. All the thought to be done must be done on the manual programming of random or stochastic events. And in both cases, how could this approach reality ? How to find a form of prediction ? How to process historical epidemic data ?\\
+
+More problems should appear noticeably in the further work of the implementation.\\
+
+\newpage
+
+\section{Impact of external territories}
+
+The debate to a greater or lesser extent was mentioned throughout this report. The themes to be interested are :\\
+\begin{itemize}
+\item Outdoor contaminations for internal individuals.
+\item Sanitary resources available outside.
+\item Demands for health resources from outside.
+\item Decisions on borders.
+\item External propensities in individual dynamics.
+\item Random parameters of actual infection states of external individuals.
+\item Evaluation of the known states of external individuals.
+\item The amount of external individuals to implement ; In other words, the amount of workers in the territory who come from outside, especially in terms of addition to internal workers. In the same vein, we must also consider internal individuals who work outside.
+\item etc.\\
+\end{itemize}
+
+In the immediate future, it is necessary to deepen the reflections.\\
+
+\newpage
+
+\section{Advanced scenario constraints}
+
+The problem of scenario design is complex. Not to mention the diversity of parameters, there are time constraints, route estimates, typical structures, etc. This complexity must be able to trace data observed in terms of affluence in spaces, respect socio-dynamic logics, etc. It's already something nice to deal with.\\
+
+Now, to add realism and accuracy of decisions / optimizations, we can add other constraints, much less fun at first glance. We will not detail them further since the complexities are implicit :\\
+\begin{itemize}
+\item A limited amount of individuals present simultaneously in a space.
+\item The need to navigate a space and have to respect a specific available slot, in connection with seat limitations.
+\item The specific opening hours of certain categories of spaces.
+\item Individuals' preferences on selecting a space in a defined category, collectively to avoid getting closer to personal data.\\
+\end{itemize}
+
+\newpage
+
+\section{Respect for barrier gestures}
+
+How to represent the respect of barrier gestures ? Is there really a typology of individuals who do not respect them in real life ?\\
+And above all, does it really represent an interest in terms of territorial decisions ?\\
+
+The implementation would require more time to think. But in the event that it seems sensible to consider it, we could bring a random factor, per day and per individual, which would influence infectious evaluations. It would increase the emission parameter of patients and decrease the threshold of contamination of susceptible infections. Respect for barrier gestures works both ways ! An interesting point is the typology of individuals. Are these the same individuals who tend not to respect these gestures or do we have to represent a random diversity to approach reality ?
+
+\newpage
+
+\section{Test, alert and protect}
+
+At the end of each day, we can identify all the people who shared a space at the same time. However, like the customers of a shop, it is not relevant, nor realistic, to hope to go up the exhaustive list of individuals. To make the link between the individual in the incubation phase and the contact cases, we can find a strategy that brings reality closer together : we would alert the individuals identified in the base of the new infected, and we would find the individuals who have shared a sufficiently long time with him. It would be necessary to specify several parameters :\\
+
+\begin{itemize}
+\item The number of days during which contact cases, not associated with the individual base, must be traced.
+\item The threshold of duration where we consider individuals in the vicinity as contact cases.
+\item The distribution of contacts during the search period ; whether the nearby individual has been in company with the newly infected person at once or several times in several spaces.
+\item The decision to be applied to contact cases : a constraint on travel, an obligation to test, etc. Note that this status can be added as an infectious state in its own right in a later version. Combinatorial decisions would then be attributed to Alerted individuals.\\
+\end{itemize}

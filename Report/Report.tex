@@ -1,0 +1,53 @@
+\documentclass[a4paper, 12pt]{report}
+
+\usepackage[T1]{fontenc}
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
+\usepackage{comfortaa}
+\usepackage[latin1]{inputenc}
+\usepackage[english]{babel} % for language
+\usepackage[top=2.8cm, left=2.8cm, right=2.8cm, bottom=2.8cm]{geometry} % for border paper
+\usepackage{hyperref} % for link href
+\usepackage{graphicx}% for pictures
+\usepackage{subcaption} % for many pictures in a figure 
+\usepackage[tight]{shorttoc} % for summary
+
+\usepackage{sectsty}  %change font sectioning
+\sectionfont{\comfortaa}
+\chapterfont{\comfortaa}
+\subsectionfont{\comfortaa}
+
+\usepackage{caption}
+    \DeclareCaptionFormat{legend}{#3}
+    \captionsetup{format = legend, font = it}
+
+\usepackage{wrapfig}
+
+\setlength{\parindent}{0pt} %Remove space in the beginning of each paragraph
+%\usepackage{parskip}  %for more  option concerning paragraph
+
+\begin{document}
+
+	\begin{comfortaa}
+	\input{Chapter/TitlePage}
+	\shorttoc{\comfortaa Interactive Summary}{3}
+	\end{comfortaa}
+
+	\large
+
+	\input{Chapter/Introduction}
+	\input{Chapter/StaticDigitalization}
+	\input{Chapter/DynamicDigitalization}
+	\input{Chapter/InfectiousDynamics}
+	\input{Chapter/DigitalizationExploitation}
+	\input{Chapter/IllustrativeApplication}
+	\input{Chapter/EnvironmentalComplexities}
+	\input{Chapter/ApprovalData}
+	\input{Chapter/CombinatorialDecisions}
+	\input{Chapter/CalculationsParallelization}
+	\input{Chapter/DevelopmentProspects}
+	\input{Chapter/QuestioningIntelligence}
+	\input{Chapter/Projection}
+	\input{Chapter/Thanks}
+
+\end{document}

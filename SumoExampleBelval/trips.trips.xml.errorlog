@@ -1,0 +1,34 @@
+Warning: busStop '4721178055' on lane '360815375#10_0' is too short for vehicle '0_bus_308:0'.
+Warning: Vehicle '3_bus_204:2' is not allowed to stop on lane '479037376#9_0'.
+Warning: Vehicle '5_bus_1:0' is not allowed to stop on lane '479037376#9_0'.
+Warning: Vehicle '6_bus_2:0' is not allowed to stop on lane '479037376#9_0'.
+Warning: busStop '1631774736' on lane '155293889#3_0' is too short for vehicle '7_bus_3:0'.
+Warning: busStop '3733227187' on lane '336961970_0' is too short for vehicle '9_train_TER_31:0'.
+Warning: busStop '4721178055@6112896' on lane '516873295#0_0' is too short for vehicle '10_bus_306:0'.
+Warning: busStop '4408239875' on lane '360827911#3_1' is too short for vehicle '10_bus_306:0'.
+Warning: busStop '-2360364949' on lane '-408845038#0_1' is too short for vehicle '10_bus_306:0'.
+Warning: busStop '4107543803' on lane '360827911#3_1' is too short for vehicle '11_bus_306:1'.
+Warning: Vehicle '13_bus_202:1' is not allowed to stop on lane '479037376#9_0'.
+Warning: Vehicle '6_bus_2:0' is not allowed on destination edge '479037376#9'.
+Warning: busStop '1115018437' for vehicle '6_bus_2:0' on lane '393248497#0_1' is not downstream the current route.
+Warning: Vehicle '6_bus_2:0' is not allowed to stop on lane '479037376#9_0'.
+Warning: Vehicle '13_bus_202:1' is not allowed on destination edge '479037376#9'.
+Warning: busStop '1115018437' for vehicle '13_bus_202:1' on lane '393248497#0_1' is not downstream the current route.
+Warning: Vehicle '13_bus_202:1' is not allowed to stop on lane '479037376#9_0'.
+Warning: Vehicle '5_bus_1:0' is not allowed on destination edge '479037376#9'.
+Warning: busStop '1115018437' for vehicle '5_bus_1:0' on lane '393248497#0_1' is not downstream the current route.
+Warning: Vehicle '5_bus_1:0' is not allowed to stop on lane '479037376#9_0'.
+Warning: Vehicle '3_bus_204:2' is not allowed on destination edge '479037376#9'.
+Warning: busStop '-8528731983' for vehicle '3_bus_204:2' on lane '-223581247#4_1' is not downstream the current route.
+Warning: Vehicle '3_bus_204:2' is not allowed to stop on lane '479037376#9_0'.
+Warning: busStop '5670312476' on lane '25210189#0_1' is too short for vehicle '15_bus_203:1'.
+Warning: busStop '-1677092127' on lane '-376948774_1' is too short for vehicle '18_bus_322:0'.
+Warning: Vehicle '21_bus_325:1' is not allowed to stop on lane '479037376#9_0'.
+Warning: busStop '-540592226' on lane '-43153658_0' is too short for vehicle '24_train_CFL-60:0'.
+Warning: Vehicle '21_bus_325:1' is not allowed on destination edge '479037376#9'.
+Warning: busStop '1115018437' for vehicle '21_bus_325:1' on lane '393248497#0_1' is not downstream the current route.
+Warning: Vehicle '21_bus_325:1' is not allowed to stop on lane '479037376#9_0'.
+Warning: busStop '271417454' on lane '24978795_0' is too short for vehicle '29_train_CFL-60:1'.
+Warning: Vehicle '23_bus_332:1' performs emergency stop at the end of lane '360827911#3_1' for unknown reasons (decel=0.00, offset=1.15), time=1050.00.
+Warning: Vehicle '25_bus_7:0' performs emergency stop at the end of lane '711234499_1' for unknown reasons (decel=0.00, offset=0.60), time=1139.00.
+Warning: Vehicle '35_bus_4:1' performs emergency stop at the end of lane '711234499_1' for unknown reasons (decel=0.00, offset=0.96), time=1208.00.
