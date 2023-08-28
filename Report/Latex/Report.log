@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.1)  27 AUG 2023 17:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.1)  28 AUG 2023 17:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -292,46 +292,50 @@ LaTeX Warning: Command \underbar  has changed.
 LaTeX Warning: Command \underline  has changed.
                Check if current package is valid.
 
-) (/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count280
+)
+(/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 \wrapoverhang=\dimen161
 \WF@size=\dimen162
-\c@WF@wrappedlines=\count280
+\c@WF@wrappedlines=\count281
 \WF@box=\box50
 \WF@everypar=\toks21
 Package: wrapfig 2003/01/31  v 3.6
 )
-LaTeX Font Info:    Trying to load font information for T1+cmss on input line 2
-8.
+LaTeX Font Info:    Trying to load font information for T1+cmss on input line 3
+4.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count281
+\l__color_backend_stack_int=\count282
 \l__pdf_internal_box=\box51
 )
 (./Report.aux)
 \openout1 = `Report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -367,7 +371,7 @@ LaTeX Font Info:    ... okay on input line 28.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 28.
+Package hyperref Info: Link coloring OFF on input line 34.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -377,11 +381,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count282
+\c@section@level=\count283
 )
-LaTeX Info: Redefining \ref on input line 28.
-LaTeX Info: Redefining \pageref on input line 28.
-LaTeX Info: Redefining \nameref on input line 28.
+LaTeX Info: Redefining \ref on input line 34.
+LaTeX Info: Redefining \pageref on input line 34.
+LaTeX Info: Redefining \nameref on input line 34.
 
 (./Report.out) (./Report.out)
 \@outlinefile=\write3
@@ -390,16 +394,16 @@ LaTeX Info: Redefining \nameref on input line 28.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count283
+\scratchcounter=\count284
 \scratchdimen=\dimen163
 \scratchbox=\box52
-\nofMPsegments=\count284
-\nofMParguments=\count285
+\nofMPsegments=\count285
+\nofMParguments=\count286
 \everyMPshowfont=\toks22
-\MPscratchCnt=\count286
+\MPscratchCnt=\count287
 \MPscratchDim=\dimen164
-\MPnumerator=\count287
-\makeMPintoPDFobject=\count288
+\MPnumerator=\count288
+\makeMPintoPDFobject=\count289
 \everyMPtoPDFconversion=\toks23
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -414,13 +418,13 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Trying to load font information for T1+comfortaa on input l
-ine 30.
+ine 36.
 
 (/usr/share/texlive/texmf-dist/tex/latex/comfortaa/T1comfortaa.fd
 File: T1comfortaa.fd 2019/06/24 Font definitions for T1/comfortaa.
 )
 LaTeX Font Info:    Font shape `T1/comfortaa/m/n' will be
-(Font)              scaled to size 12.0pt on input line 30.
+(Font)              scaled to size 12.0pt on input line 36.
 
 (./Chapter/TitlePage.tex
 <Media/UniversiteLille.png, id=337, 1204.5pt x 579.16376pt>
@@ -465,18 +469,22 @@ g> <./Media/PolytechLille.png> <./Media/UniversiteLuxembourg.png>])
 LaTeX Font Info:    Font shape `T1/comfortaa/bx/n' in size <24.88> not availabl
 e
 (Font)              Font shape `T1/comfortaa/b/n' tried instead on input line 3
-2.
+9.
 LaTeX Font Info:    Font shape `T1/comfortaa/b/n' will be
-(Font)              scaled to size 24.88pt on input line 32.
+(Font)              scaled to size 24.88pt on input line 39.
 
 (./Report.toc
 LaTeX Font Info:    Font shape `T1/comfortaa/b/n' will be
-(Font)              scaled to size 12.0pt on input line 2.
+(Font)              scaled to size 14.4pt on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 3.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 3.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.37 ...3.2.5}Seriously ill}{43}{subsection.3.2.5}
+l.34 ....2}Incubation phase}{40}{subsection.3.2.2}
                                                   % [1
 
 ] [2])
@@ -958,12 +966,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 26--28
 
  []
 
-[24]
+
 Underfull \hbox (badness 10000) in paragraph at lines 29--31
 
  []
 
-
+[24]
 Underfull \hbox (badness 10000) in paragraph at lines 32--34
 
  []
@@ -998,12 +1006,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 52--53
 
  []
 
-[27]
+
 Underfull \hbox (badness 10000) in paragraph at lines 54--55
 
  []
 
-
+[27]
 Underfull \hbox (badness 10000) in paragraph at lines 56--57
 
  []
@@ -1155,10 +1163,6 @@ File: Media/SchemaInfection.png Graphic file (type png)
 <use Media/SchemaInfection.png>
 Package pdftex.def Info: Media/SchemaInfection.png  used on input line 7.
 (pdftex.def)             Requested size: 438.17227pt x 228.18648pt.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 12.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 12.
 
 Underfull \hbox (badness 10000) in paragraph at lines 16--16
 
@@ -1179,14 +1183,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 26--27
 
  []
 
-[38
 
- <./Media/SchemaInfection.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 28--29
 
  []
 
+[38
 
+ <./Media/SchemaInfection.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 30--31
 
  []
@@ -1345,14 +1349,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 11--12
 
  []
 
-[49
 
-]
 Underfull \hbox (badness 10000) in paragraph at lines 15--16
 
  []
 
+[49
 
+]
 Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
  []
@@ -1367,12 +1371,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 21--22
 
  []
 
-[50]
+
 Underfull \hbox (badness 10000) in paragraph at lines 23--24
 
  []
 
-
+[50]
 Underfull \hbox (badness 10000) in paragraph at lines 25--26
 
  []
@@ -1518,7 +1522,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--10
 
 [61
 
-] [62]
+]
 Underfull \hbox (badness 10000) in paragraph at lines 15--16
 
  []
@@ -1533,7 +1537,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 22--23
 
  []
 
-[63]
+[62]
 Underfull \hbox (badness 10000) in paragraph at lines 28--29
 
  []
@@ -1553,7 +1557,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 37--38
 
  []
 
-[64]
+[63]
 Underfull \hbox (badness 10000) in paragraph at lines 43--44
 
  []
@@ -1578,7 +1582,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 51--52
 
  []
 
-[65]
+[64]
 Underfull \hbox (badness 10000) in paragraph at lines 57--58
 
  []
@@ -1593,7 +1597,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 70--71
 
  []
 
-[66]
+[65]
 Underfull \hbox (badness 10000) in paragraph at lines 76--77
 
  []
@@ -1608,12 +1612,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 83--84
 
  []
 
-[67]
+[66]
 Underfull \hbox (badness 10000) in paragraph at lines 90--92
 
  []
 
-[68]
+[67]
 Underfull \hbox (badness 10000) in paragraph at lines 99--100
 
  []
@@ -1623,7 +1627,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 105--106
 
  []
 
-) (./Chapter/ApprovalData.tex [69]
+) (./Chapter/ApprovalData.tex [68]
 Chapter 7.
 
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
@@ -1640,9 +1644,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--18
 
  []
 
-) (./Chapter/CombinatorialDecisions.tex [70
+) (./Chapter/CombinatorialDecisions.tex [69
 
-] [71]
+]
 Chapter 8.
 
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
@@ -1664,9 +1668,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 11--12
 
  []
 
-[72
 
-]
 Overfull \hbox (3.08806pt too wide) in paragraph at lines 15--16
 \T1/cmss/m/n/14.4 With spaces, how-ever, it seems manda-tory to use the cat-e-g
 ories in the database
@@ -1677,7 +1679,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 15--16
 
  []
 
-) (./Chapter/CalculationsParallelization.tex [73]
+[70
+
+]) (./Chapter/CalculationsParallelization.tex [71]
 Chapter 9.
 
 Underfull \hbox (badness 10000) in paragraph at lines 5--7
@@ -1694,9 +1698,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 12--14
 
  []
 
-) (./Chapter/DevelopmentProspects.tex [74
+) (./Chapter/DevelopmentProspects.tex [72
 
-] [75]
+] [73]
 Chapter 10.
 
 Underfull \hbox (badness 10000) in paragraph at lines 5--6
@@ -1723,14 +1727,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 15--16
 
  []
 
-[76
 
-]
 Underfull \hbox (badness 10000) in paragraph at lines 19--20
 
  []
 
+[74
 
+]
 Underfull \hbox (badness 10000) in paragraph at lines 21--22
 
  []
@@ -1745,12 +1749,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 27--28
 
  []
 
-[77]
+
 Underfull \hbox (badness 10000) in paragraph at lines 31--32
 
  []
 
-<Media/R0.png, id=800, 450.68375pt x 347.2975pt>
+[75]
+<Media/R0.png, id=792, 450.68375pt x 347.2975pt>
 File: Media/R0.png Graphic file (type png)
 <use Media/R0.png>
 Package pdftex.def Info: Media/R0.png  used on input line 37.
@@ -1760,7 +1765,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 42--43
 
  []
 
-[78 <./Media/R0.png>]) (./Chapter/QuestioningIntelligence.tex [79]
+) (./Chapter/QuestioningIntelligence.tex [76 <./Media/R0.png>] [77]
 Underfull \hbox (badness 10000) in paragraph at lines 4--5
 
  []
@@ -1770,14 +1775,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
  []
 
-[80
 
-]
 Underfull \hbox (badness 10000) in paragraph at lines 8--9
 
  []
 
+[78
 
+]
 Underfull \hbox (badness 10000) in paragraph at lines 10--11
 
  []
@@ -1802,12 +1807,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 19--20
 
  []
 
-[81]
+
 Underfull \hbox (badness 10000) in paragraph at lines 22--23
 
  []
 
-
+[79]
 Underfull \hbox (badness 10000) in paragraph at lines 25--26
 
  []
@@ -1837,7 +1842,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 37--38
 
  []
 
-[82]) (./Chapter/Projection.tex [83]
+[80]) (./Chapter/Projection.tex [81]
 Underfull \hbox (badness 10000) in paragraph at lines 4--5
 
  []
@@ -1852,7 +1857,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--9
 
  []
 
-[84
+[82
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 10--11
@@ -1876,13 +1881,12 @@ File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `T1/comfortaa/m/n' will be
 (Font)              scaled to size 17.28pt on input line 25.
-<Media/GandalfQuote.jpg, id=833, 1606.0pt x 903.375pt>
+<Media/GandalfQuote.jpg, id=824, 1606.0pt x 903.375pt>
 File: Media/GandalfQuote.jpg Graphic file (type jpg)
 <use Media/GandalfQuote.jpg>
-Package pdftex.def Info: Media/GandalfQuote.jpg  used on input line 28.
-(pdftex.def)             Requested size: 401.49902pt x 225.8432pt.
- [85])
-(./Chapter/Thanks.tex [86 <./Media/GandalfQuote.jpg>]
+Package pdftex.def Info: Media/GandalfQuote.jpg  used on input line 30.
+(pdftex.def)             Requested size: 353.32109pt x 198.74312pt.
+) (./Chapter/Thanks.tex [83 <./Media/GandalfQuote.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 4--6
 
  []
@@ -1892,20 +1896,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 7--9
 
  []
 
-) [87
+) [84
 
 ] (./Report.aux)
 Package rerunfilecheck Info: File `Report.out' has not changed.
 (rerunfilecheck)             Checksum: 57D5C5A6EBA8B25D069880A74B125347;14430.
  ) 
 Here is how much of TeX's memory you used:
- 12196 strings out of 480145
- 201881 string characters out of 5893301
- 500508 words of memory out of 5000000
- 29731 multiletter control sequences out of 15000+600000
- 543299 words of font info for 71 fonts, out of 8000000 for 9000
+ 12511 strings out of 480145
+ 205801 string characters out of 5893301
+ 505345 words of memory out of 5000000
+ 30047 multiletter control sequences out of 15000+600000
+ 536177 words of font info for 68 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 83i,9n,131p,1569b,523s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 83i,9n,131p,1569b,566s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/
 fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/share/texlive/texmf-dist/fonts/
 enc/dvips/comfortaa/a_xu66hj.enc}</usr/share/texlive/texmf-dist/fonts/type1/aaj
@@ -1915,10 +1919,10 @@ uper/sfsi1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsi1440.pfb></
 usr/share/texmf/fonts/type1/public/cm-super/sfss1200.pfb></usr/share/texmf/font
 s/type1/public/cm-super/sfss1440.pfb></usr/share/texmf/fonts/type1/public/cm-su
 per/sfsx1440.pfb>
-Output written on Report.pdf (88 pages, 2628082 bytes).
+Output written on Report.pdf (85 pages, 2627906 bytes).
 PDF statistics:
- 928 PDF objects out of 1000 (max. 8388607)
- 787 compressed objects within 8 object streams
- 185 named destinations out of 1000 (max. 500000)
+ 916 PDF objects out of 1000 (max. 8388607)
+ 778 compressed objects within 8 object streams
+ 182 named destinations out of 1000 (max. 500000)
  748 words of extra memory for PDF output out of 10000 (max. 10000000)
 

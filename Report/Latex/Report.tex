@@ -20,6 +20,12 @@
     \DeclareCaptionFormat{legend}{#3}
     \captionsetup{format = legend, font = it}
 
+\usepackage{etoolbox}% http://ctan.org/pkg/etoolbox
+\makeatletter
+\patchcmd{\@makechapterhead}{\vspace*{50\p@}}{}{}{}% Removes space above \chapter head
+\patchcmd{\@makeschapterhead}{\vspace*{50\p@}}{}{}{}% Removes space above \chapter* head
+\makeatother
+
 \usepackage{wrapfig}
 
 \setlength{\parindent}{0pt} %Remove space in the beginning of each paragraph
@@ -29,6 +35,7 @@
 
 	\begin{comfortaa}
 	\input{Chapter/TitlePage}
+	\large
 	\shorttoc{\comfortaa Interactive Summary}{3}
 	\end{comfortaa}
 
