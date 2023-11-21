@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2023-06-07 09:00:42 by Eclipse SUMO netconvert Version 1.12.0
+<!-- generated on 2023-10-30 20:35:02 by Eclipse SUMO netconvert Version 1.12.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
 
     <input>
         <type-files value="/usr/share/sumo/data/typemap/osmNetconvert.typ.xml,/usr/share/sumo/data/typemap/osmNetconvertUrbanDe.typ.xml,/usr/share/sumo/data/typemap/osmNetconvertPedestrians.typ.xml"/>
-        <osm-files value="/home/yanncauchepin/Git/EpidemicDigitalization/Modules/OSM/belval.osm.xml"/>
+        <osm-files value="/home/yanncauchepin/Git/PublicProjects/EpidemicDigitalization/Code/Modules/OSM/belval.osm.xml"/>
     </input>
 
     <output>
-        <output-file value="/home/yanncauchepin/Git/EpidemicDigitalization/Modules/SumoMobility/SumoFiles/network.net.xml"/>
+        <output-file value="/home/yanncauchepin/Git/PublicProjects/EpidemicDigitalization/Code/Modules/SumoMobility/SumoFiles/network.net.xml"/>
         <output.street-names value="true"/>
         <output.original-names value="true"/>
-        <ptstop-output value="/home/yanncauchepin/Git/EpidemicDigitalization/Modules/SumoMobility/SumoFiles/pt.stops.xml"/>
-        <ptline-output value="/home/yanncauchepin/Git/EpidemicDigitalization/Modules/SumoMobility/SumoFiles/pt.lines.xml"/>
+        <ptstop-output value="/home/yanncauchepin/Git/PublicProjects/EpidemicDigitalization/Code/Modules/SumoMobility/SumoFiles/pt.stops.xml"/>
+        <ptline-output value="/home/yanncauchepin/Git/PublicProjects/EpidemicDigitalization/Code/Modules/SumoMobility/SumoFiles/pt.lines.xml"/>
     </output>
 
     <projection>

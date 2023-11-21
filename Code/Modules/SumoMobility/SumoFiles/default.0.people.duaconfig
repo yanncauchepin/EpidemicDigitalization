@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/duarouterConfiguration.xsd">')
     <input>
-        <net-file value="/home/yanncauchepin/Git/EpidemicDigitalization/Modules/SumoMobility/SumoFiles/network.net.xml" />
-        <additional-files value="/home/yanncauchepin/Git/EpidemicDigitalization/Modules/SumoMobility/SumoFiles/pt.stops.xml"/>
-        <route-files value="/home/yanncauchepin/Git/EpidemicDigitalization/Modules/SumoMobility/SumoFiles/default.0.people.trips.xml" />
+        <net-file value="/home/yanncauchepin/Git/PublicProjects/EpidemicDigitalization/Code/Modules/SumoMobility/SumoFiles/network.net.xml" />
+        <additional-files value="/home/yanncauchepin/Git/PublicProjects/EpidemicDigitalization/Code/Modules/SumoMobility/SumoFiles/pt.stops.xml"/>
+        <route-files value="/home/yanncauchepin/Git/PublicProjects/EpidemicDigitalization/Code/Modules/SumoMobility/SumoFiles/default.0.people.trips.xml" />
     </input>
     <output>
-        <output-file value="/home/yanncauchepin/Git/EpidemicDigitalization/Modules/SumoMobility/SumoFiles/default.0.people.temp.routes.xml"/>
-        <alternatives-output value="/home/yanncauchepin/Git/EpidemicDigitalization/Modules/SumoMobility/SumoFiles/default.0.people.temp.alt.routes.xml"/>
+        <output-file value="/home/yanncauchepin/Git/PublicProjects/EpidemicDigitalization/Code/Modules/SumoMobility/SumoFiles/default.0.people.temp.routes.xml"/>
+        <alternatives-output value="/home/yanncauchepin/Git/PublicProjects/EpidemicDigitalization/Code/Modules/SumoMobility/SumoFiles/default.0.people.temp.alt.routes.xml"/>
     </output>
     <processing>
         <repair value="true"/>
