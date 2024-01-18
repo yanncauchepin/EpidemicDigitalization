@@ -2,14 +2,12 @@
 
 \section{Initialization phase}
 
-Initialization is certainly the longest phase because of the complete reading of the openstreetmap file. This step is visibly difficult to parallelize. This is followed by the allocation of the nearest road for each space. This step takes significantly longer than reading the import file. However, it is possible to parallelize it quite easily : it is enough to simply distribute the local search of each space on several
-data centers.\\
+Initialization is certainly the longest phase because of the complete reading of the \textit{openstreetmap} file. This step is visibly difficult to parallelize. This is followed by the allocation of the nearest road for each place. This step takes significantly longer than reading the import file. However, it is possible to parallelize it quite easily : it is enough to simply distribute the local search of each place on several data centers.\\
 
 Then, initialization follows with the creation of individuals, infections and infectious states, and possibly scenarios when you want to memorize them. These steps are, of course, parallel. It will be necessary to ensure to have a ``master'' to respect the predefined requests in the initialization.\\
 
 \section{Iterative phase}
 
-The iterative phase corresponds to the continuation of digitizations on the days. It begins with the creation/adaptation of scenarios, which can be parallelized as in the initiation phase. SumoMobility is then used to translate these scenarios into its format with duarouter. This step can be parallelized by the software itself by specifying a number of threads ; Note that we do not have access to parallelization
-since it is done internally. There is then a significant step which is to sort the routes according to the departure time.\\
+The iterative phase corresponds to the continuation of digitizations on the days. It begins with the creation/adaptation of scenarios, which can be parallelized as in the initiation phase. \textit{SumoMobility} is then used to translate these scenarios into its format with \textit{duarouter}. This step can be parallelized by the software itself by specifying a number of threads ; note that we do not have access to parallelization since it is done internally. There is then a significant step which is to sort the routes according to the departure time.\\
 
-Now, we can launch the execution of SumoMobility to digitize the dynamics of the company. As a reminder, we can internally parallelize this execution under several threads but we do not really know the details. Once the digitization is done, we then take care of the analysis of the results. You must first read a file and then save the data. The following treatments can almost all be parallelized since the calculations are attached to each space or each individual, etc. These interventions include economic and infectious assessments of individuals/spaces.
+Now, we can launch the execution of \textit{SumoMobility} to digitize the dynamics of the society. As a reminder, we can internally parallelize this execution under several threads but we do not really know the details. Once the digitization is done, we then take care of the analysis of the results. You must first read a file and then save the data. The following treatments can almost all be parallelized since the calculations are attached to each place or each individual, etc. These interventions include economic and infectious assessments of individuals/places.
