@@ -1,3 +1,5 @@
+## SUMMARY ##
+
 The aim of this project was to use reinforcement learning to optimize the management of an epidemic crisis. The interest is to produce a multicriteria optimization by limiting the infectious exchanges of an epidemic and by maximizing the economic stability of a territory. This project was carried out in a complete autonomy and had to be imagined without any guide.
 
 From an openstreetmap file, we get the mapping of any territory. According to several strategies, it is accessible to match it with demographic data. Each database has its own appropriate design and specific attributes to make digitalization as realistic as possible. This is what we can call "static digitalization".
@@ -9,3 +11,8 @@ We can add several layers of evaluations to obtain individualized scores for eac
 The infectious design is carried out by considering the different states, real and/or identified, of the individuals. The contamination of individuals is modeled by the accumulation of contagious particles in an organism with a certain threshold. The evolution of the states is realized by using probabilistic laws and antigen/antibody modeling.
 
 By linking global data together, we can reproduce the functioning of a black-box that digitizes any territory and allows us to optimize its functioning.
+
+## TO DO LIST ##
+
+- [ ] Check and upgrade code.
+- [ ] Complete a to do list.
