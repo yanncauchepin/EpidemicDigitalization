@@ -1,4 +1,6 @@
-## SUMMARY ##
+# Mathematical Models in Python #
+
+## Summary ##
 
 The aim of this project was to use reinforcement learning to optimize the management of an epidemic crisis. The interest is to produce a multicriteria optimization by limiting the infectious exchanges of an epidemic and by maximizing the economic stability of a territory. This project was carried out in a complete autonomy and had to be imagined without any guide.
 
@@ -12,7 +14,15 @@ The infectious design is carried out by considering the different states, real a
 
 By linking global data together, we can reproduce the functioning of a black-box that digitizes any territory and allows us to optimize its functioning.
 
-## TO DO LIST ##
+## Prerequisites ##
+
+## Usage ##
+
+### Example ###
+
+## Results ##
+
+## To do list ##
 
 - [ ] Check and upgrade code.
 - [ ] Complete a to do list.
