@@ -1,0 +1,4 @@
+osmium==3.6.0
+pyproj==3.4.0
+Shapely==1.8.5.post1
+numpy==1.24.3

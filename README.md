@@ -16,6 +16,8 @@ By linking global data together, we can reproduce the functioning of a black-box
 
 ## Prerequisites ##
 
+## Input Dataset ##
+
 ## Usage ##
 
 ### Example ###
