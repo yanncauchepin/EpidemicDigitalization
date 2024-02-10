@@ -1,4 +1,4 @@
-# Mathematical Models in Python #
+# Epidemic Digitalization in Python #
 
 ## Summary ##
 
@@ -14,6 +14,8 @@ The infectious design is carried out by considering the different states, real a
 
 By linking global data together, we can reproduce the functioning of a black-box that digitizes any territory and allows us to optimize its functioning.
 
+This project was realised during an internship at the **University of Luxembourg**. One of the main technologies used was ***OpenStreetMap*** and ***SumoMobility***.
+
 ## Prerequisites ##
 
 ## Input Dataset ##
@@ -28,3 +30,4 @@ By linking global data together, we can reproduce the functioning of a black-box
 
 - [ ] Check and upgrade code.
 - [ ] Complete a to do list.
+- [ ] Complete README.
