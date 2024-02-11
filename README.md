@@ -1,4 +1,4 @@
-# Mathematical Models #
+# Epidemic Digitalization #
 > ### Language : Python ###
 
 ## Summary ##
