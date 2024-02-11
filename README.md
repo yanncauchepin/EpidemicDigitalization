@@ -1,4 +1,5 @@
-# Mathematical Models in Python #
+# Mathematical Models #
+> ### Language : Python ###
 
 ## Summary ##
 
