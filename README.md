@@ -19,7 +19,9 @@ This project was realised during an internship at the **University of Luxembourg
 
 ## Prerequisites ##
 
-## Input Dataset ##
+Before running this code, ensure you have the following :
+
+- Python packages described in ***requirements.txt***.
 
 ## Usage ##
 
