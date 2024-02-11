@@ -34,3 +34,4 @@ Before running this code, ensure you have the following :
 - [ ] Check and upgrade code.
 - [ ] Complete a to do list.
 - [ ] Complete README.
+- [ ] Adapt the repository to well developer traditions.
