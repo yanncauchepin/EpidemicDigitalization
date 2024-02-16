@@ -1,40 +1,14 @@
+from modules.place.data_place import DataPlace
+from modules.tools.style import Color
+#, initDataPlace, DataRoad
+import osmium
+import pyproj
+from shapely.geometry import Polygon
+from shapely.ops import transform
+from functools import partial
+from math import floor
 
-'''----------------------------------------------------------------> DEPRECATED
-
-from Modules.Place import DataPlace, DataRoad, setElementsFromOsm
-from Modules.Tools.Style import color
-
-def initOsmElements(osm_file, network_file) :
-
-    setElementsFromOsm.OsmHandler(network_file=network_file).apply_file(osm_file)
-
-def assignRoadPlace() :
-
-    print(f"{color.GREEN}Assigning place road in progress ...{color.RESET}")
-
-    dataplace = DataPlace.DataPlace()
-    dataroad = DataRoad.DataRoad()
-
-    for id in dataplace.getPlaces() :
-        place = dataplace.getPlace(id)
-        location = place.getLocation()
-        road = dataroad.getNearestRoad(location)
-        place.setRoad(road, change=True, check=True)
-        dataroad.getRoad(road).addPlace(id)
-
-def setPolygonTypeSumoFromOSM(path, file):
-
-    f = open(f"{path}/{file}", "w")
-    f.write("""<?xml version="1.0" encoding="UTF-8"?>
-<polygonTypes>
-    <polygonType id="building" name="building" color="0.0,0.0,1.0" layer="1"/>
-</polygonTypes>
-    """)
-    f.close()
-
-    return file
-
-def getTypePlaceFromOSM(osm_tags) :
+def get_typage_place_from_osm_tags(osm_tags) :
 
     #Type : accomodation
     if (osm_tags.get("building") == "hotel") \
@@ -185,79 +159,87 @@ def getTypePlaceFromOSM(osm_tags) :
     else:
         return (None, None)
 
-def initTypageDataPlace() :
 
-    dataplace=DataPlace.DataPlace()
+class OsmHandler (osmium.SimpleHandler) :
 
-    dataplace.addTypePlace("accomodation")
-    type = dataplace.getType("accomodation")
-    type.addSubtypePlace("hotel")
-    type.addSubtypePlace("hotel")
-    type.addSubtypePlace("housing")
-    type.addSubtypePlace("pension")
-    type.addSubtypePlace("prison")
+    def __init__(self) : # network_file
+        osmium.SimpleHandler.__init__(self)
+        #self.__dataroad = DataRoad.DataRoad(network_file)
+        self.__nodes = dict()
+        self.__proj = partial(pyproj.transform, pyproj.Proj('epsg:4326'),pyproj.Proj('epsg:3857'))
+        self.__dataplace = DataPlace()
+        print(f"{Color.GREEN}Extracting places from osm file in progress ...{Color.RESET}")
 
-    dataplace.addTypePlace("education")
-    type = dataplace.getType("education")
-    type.addSubtypePlace("school")
-    type.addSubtypePlace("academic")
-    type.addSubtypePlace("others")
 
-    dataplace.addTypePlace("command")
-    type = dataplace.getType("command")
-    type.addSubtypePlace("law")
-    type.addSubtypePlace("politics")
-    type.addSubtypePlace("police")
+    def get_tags (self, tags) :
+        osm_tags = dict()
+        for tag in tags :
+            osm_tags[tag.k] = tag.v
+        return osm_tags
 
-    dataplace.addTypePlace("office")
-    type = dataplace.getType("office")
-    type.addSubtypePlace("office")
 
-    dataplace.addTypePlace("commerce")
-    type = dataplace.getType("commerce")
-    type.addSubtypePlace("supermarket")
-    type.addSubtypePlace("nocturnal")
-    type.addSubtypePlace("shop")
-    type.addSubtypePlace("mall")
-    type.addSubtypePlace("limited_restoration")
-    type.addSubtypePlace("out_restoration")
-    type.addSubtypePlace("leisure_inside")
-    type.addSubtypePlace("leisure_outside")
-    type.addSubtypePlace("art")
-    type.addSubtypePlace("sport_inside")
-    type.addSubtypePlace("sport_outside")
+    def get_nodes_location(self, nodes) :
+        list_nodes = list()
+        for n in nodes :
+            list_nodes.append(self.__nodes[n.ref])
+        return list_nodes
 
-    dataplace.addTypePlace("social")
-    type = dataplace.getType("social")
-    type.addSubtypePlace("kindergarten")
-    type.addSubtypePlace("inside")
-    type.addSubtypePlace("park")
-    type.addSubtypePlace("religious")
-    type.addSubtypePlace("funeral")
 
-    dataplace.addTypePlace("production")
-    type = dataplace.getType("production")
-    type.addSubtypePlace("industry")
-    type.addSubtypePlace("construction")
-    type.addSubtypePlace("agriculture")
-    type.addSubtypePlace("craft")
+    def get_area(self, nodes) :
+        if (len(nodes) > 3) :
+            coord = "["
+            for i in range(len(nodes)-1) :
+                coord += str(nodes[i]) + ","
+            coord += str(nodes[-1]) + "]"
+            p = Polygon(eval(coord))
+            return floor(transform(self.__proj, p).area)
+        else :
+            return None
 
-    dataplace.addTypePlace("health")
-    type = dataplace.getType("health")
-    type.addSubtypePlace("hospital")
-    type.addSubtypePlace("doctor")
-    type.addSubtypePlace("others")
-    type.addSubtypePlace("clinic")
-    type.addSubtypePlace("pharmacy")
 
-    dataplace.addTypePlace("logistic")
-    type = dataplace.getType("logistic")
-    type.addSubtypePlace("common_transport")
-    type.addSubtypePlace("airport")
-    type.addSubtypePlace("fuel")
-    type.addSubtypePlace("garage")
-    type.addSubtypePlace("post")
+    def get_location(self, nodes) :
+        sum_latitude = 0
+        sum_longitude = 0
+        for node in nodes :
+            sum_latitude += node[0]
+            sum_longitude += node[1]
+        return (sum_latitude/len(nodes), sum_longitude/len(nodes))
 
-    return dataplace
 
-'''
+    def node (self, n) :
+        self.__nodes[n.id] = [n.location.lat, n.location.lon]
+        
+        
+    def way (self, w) :
+        '''
+        if osm_tags.get("highway") not in (None, "construction") :
+            nodes = self.getNodesLocation(w.nodes)
+            self.__dataroad.addRoad(id=w.id, location=self.getLocation(nodes), nodes=nodes, osm_tags=osm_tags)
+        else :
+        '''
+        osm_tags = self.get_tags(w.tags)
+        type_name, subtype_name = get_typage_place_from_osm_tags(osm_tags)
+        if type_name != None and subtype_name != None :
+            nodes = self.get_nodes_location(w.nodes)
+            area = self.get_area(nodes)
+            if (area != None) and (area >0):
+                id_key = w.id
+                latitude, longitude = self.get_location(nodes)
+                self.__dataplace.insert_place(id_key, type_name, subtype_name, latitude, area, str(nodes), str(osm_tags))
+                
+        
+        '''
+        if osm_tags.get("highway") not in (None, "construction") :
+            nodes = self.getNodesLocation(w.nodes)
+            self.__dataroad.addRoad(id=w.id, location=self.getLocation(nodes), nodes=nodes, osm_tags=osm_tags)
+        else :
+            type, subtype = self.getPlaceType(osm_tags)
+            if type != None and subtype != None :
+                nodes = self.getNodesLocation(w.nodes)
+                area = self.getArea(nodes)
+                if (area != None) and (area >10) :
+                    id = w.id
+                    location = self.getLocation(nodes)
+                    self.reportFile(id,type, subtype, location, area, nodes, osm_tags)
+                    self.__dataplace.addPlace(id=id, location=location, type=type, subtype=subtype, area=area, nodes=nodes, osm_tags=osm_tags)
+        '''

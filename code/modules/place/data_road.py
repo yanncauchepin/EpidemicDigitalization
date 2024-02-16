@@ -1,12 +1,73 @@
+from modules.tools.singleton import Singleton
+from modules.tools.style import Color
+import sqlite3
+
+
+class DataPlace(metaclass=Singleton): 
+    
+    def __init__(self, dataset_path, raise_error_on_duplicate_id=False) :
+        # generate path folder if not exist
+        self.connection = sqlite3.connect(dataset_path)
+        self.cursor = self.connection.cursor()
+        self.raise_error_on_duplicate_id = raise_error_on_duplicate_id
+    
+    def create_database(self) :
+        self.cursor.execute('''CREATE TABLE IF NOT EXISTS Places (
+            id INTEGER PRIMARY KEY, 
+            type TEXT,
+            subtype TEXT,
+            latitude REAL,
+            longitude REAL,
+            area REAL,
+            nodes TEXT,
+            tags TEXT
+            )''')
+        
+    def insert_place(self, id_key, type_name, subtype_name, latitude, longitude, area, nodes="nan", tags="nan"):
+        # Check if the id_key already exists
+        self.cursor.execute("SELECT id FROM Places WHERE id = ?", 
+                            (id_key,))
+        existing_id = self.cursor.fetchone()
+        if existing_id:
+            if self.raise_error_on_duplicate_id:
+                raise ValueError(f"ID {id_key} already exists in the places database.\n")
+            else:
+                print(f"{Color.RED}Warning:{Color.RESET} ID {id_key} already exists in the places database.\n")
+        else:
+            # Insert the place
+            self.cursor.execute('''INSERT INTO Places (
+                id, type, subtype, latitude, longitude, area, nodes
+                ) VALUES (?, ?, ?, ?, ?, ?, ?)''',
+            (id_key, type_name, subtype_name, latitude, longitude, area, nodes))
+            self.connection.commit()
+
+    def remove_place(self, id_key):
+        self.cursor.execute("DELETE FROM Places WHERE id = ?", 
+                            (id_key,))
+        self.connection.commit()
+        
+    def reset_database(self):
+        self.cursor.execute("DELETE FROM Places")
+        self.connection.commit()
+
+    def end_connection_db(self):
+        self.cursor.close()
+        self.connection.close()
+
+
+
+'''----------------------------------------------------------------> DEPRECATED
 import os
 import sys
 from Modules.Tools.Style import color
+
 
 if 'SUMO_HOME' in os.environ :
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
     sys.path.append(tools)
 else :
     sys.exit(f"{color.RED}Please declare environment variable {color.BLUE}'SUMO_HOME'{color.RESET}")
+
 
 import sumolib
 from random import sample
@@ -173,3 +234,4 @@ class DataRoad (metaclass=Singleton.Singleton) :
 
         def __repr__(self) :
             return self.__str__()
+'''

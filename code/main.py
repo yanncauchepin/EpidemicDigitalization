@@ -1,3 +1,31 @@
+from modules.place.data_place import DataPlace
+from modules.place.osm_handler import OsmHandler
+
+
+if __name__ == '__main__' :
+    
+    osm_path = 'dataset/openstreetmap/belval.osm.xml'
+    places_dataset_path = 'dataset/databases/data_places.db'
+    
+    data_place = DataPlace(places_dataset_path)
+    data_place.create_database()
+    data_place.reset_database()
+    OsmHandler().apply_file(osm_path)
+    ''' Test
+    data_place.insert_place(151161, "building", "hotel", 42.65454, 485.685, 48.6, "nan", "nan")
+    places = data_place.get_all_places()
+    for place in places :
+        print(place)
+    print(data_place.count_places())
+    '''
+    data_place.end_connection_db()
+    
+
+
+
+
+'''----------------------------------------------------------------> DEPRECATED
+
 import os
 
 from Modules.Place import initDataPlace
@@ -81,3 +109,5 @@ plt.ylabel("People")
 plt.grid()
 plt.legend()
 plt.show()
+
+'''

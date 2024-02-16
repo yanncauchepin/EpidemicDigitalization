@@ -1,7 +1,158 @@
 from modules.tools.singleton import Singleton
+from modules.tools.style import Color
+import sqlite3
+
+
+class DataPlace(metaclass=Singleton):
+    
+    def __init__(self, dataset_path, raise_error_on_duplicate_id=False) :
+        # generate path folder if not exist
+        self.connection = sqlite3.connect(dataset_path)
+        self.cursor = self.connection.cursor()
+        self.raise_error_on_duplicate_id = raise_error_on_duplicate_id
+    
+    def create_database(self) :
+        self.cursor.execute('''CREATE TABLE IF NOT EXISTS Places (
+            id INTEGER PRIMARY KEY, 
+            type TEXT,
+            subtype TEXT,
+            latitude REAL,
+            longitude REAL,
+            area REAL,
+            nodes TEXT,
+            tags TEXT
+            )''')
+        
+    def insert_place(self, id_key, type_name, subtype_name, latitude, longitude, area, nodes="nan", tags="nan"):
+        # Check if the id_key already exists
+        self.cursor.execute("SELECT id FROM Places WHERE id = ?", 
+                            (id_key,))
+        existing_id = self.cursor.fetchone()
+        if existing_id:
+            if self.raise_error_on_duplicate_id:
+                raise ValueError(f"ID {id_key} already exists in the places database.\n")
+            else:
+                print(f"{Color.RED}Warning:{Color.RESET} ID {id_key} already exists in the places database.\n")
+        else:
+            # Insert the place
+            self.cursor.execute('''INSERT INTO Places (
+                id, type, subtype, latitude, longitude, area, nodes
+                ) VALUES (?, ?, ?, ?, ?, ?, ?)''',
+            (id_key, type_name, subtype_name, latitude, longitude, area, nodes))
+            self.connection.commit()
+
+    def remove_place(self, id_key):
+        self.cursor.execute("DELETE FROM Places WHERE id = ?", 
+                            (id_key,))
+        self.connection.commit()
+        
+    def reset_database(self):
+        self.cursor.execute("DELETE FROM Places")
+        self.connection.commit()
+
+    def end_connection_db(self):
+        self.cursor.close()
+        self.connection.close()
+
+    """Get places"""
+    
+    def get_all_places(self) :
+        self.cursor.execute("SELECT * FROM Places")
+        all_places = self.cursor.fetchall()
+        return all_places
+    
+    def get_typage_places(self, type_name, subtype_name):
+        self.cursor.execute("SELECT * FROM Places WHERE type = ? AND subtype = ?", 
+                            (type_name, subtype_name))
+        typage_places = self.cursor.fetchall()
+        return typage_places
+    
+    def get_type_places(self, type_name):
+        self.cursor.execute("SELECT * FROM Places WHERE type = ? ", 
+                            (type_name,))
+        type_places = self.cursor.fetchall()
+        return type_places
+    
+    def get_id_place(self, id_key):
+        self.cursor.execute("SELECT * FROM Places WHERE id = ? ", 
+                            (id_key,))
+        id_place = self.cursor.fetchall()
+        return id_place
+    
+    """List ids"""
+    
+    def list_all_ids(self):
+        self.cursor.execute("SELECT id FROM Places")
+        all_ids = [row[0] for row in self.cursor.fetchall()]
+        return all_ids
+    
+    def list_ids_by_typage(self, type_name, subtype_name):
+        self.cursor.execute("SELECT id FROM Places WHERE type = ? AND subtype = ?", 
+                            (type_name, subtype_name))
+        typage_ids = self.cursor.fetchall()
+        return typage_ids
+    
+    def list_ids_by_type(self, type_name):
+        self.cursor.execute("SELECT id FROM Places WHERE type = ?", 
+                            (type_name,))
+        type_ids = self.cursor.fetchall()
+        return type_ids
+    
+    """List unique typage"""
+    
+    def list_unique_typage(self):
+        self.cursor.execute("SELECT DISTINCT type, subtype FROM Places")
+        unique_typages = self.cursor.fetchall()
+        return unique_typages
+
+    def list_unique_subtypes_for_type(self, type_name):
+        self.cursor.execute("SELECT DISTINCT subtype FROM Places WHERE type = ?", 
+                            (type_name,))
+        unique_subtypes = [row[0] for row in self.cursor.fetchall()]
+        return unique_subtypes
+
+    """Count places"""
+
+    def count_places(self):
+        self.cursor.execute("SELECT COUNT(*) FROM Places")
+        count_all = self.cursor.fetchone()[0]
+        return count_all
+    
+    def count_places_by_typage(self, type_name, subtype_name):
+        self.cursor.execute("SELECT COUNT(*) FROM Places WHERE type = ? AND subtype = ?", 
+                            (type_name, subtype_name))
+        count_typage = self.cursor.fetchone()[0]
+        return count_typage
+    
+    def count_places_by_type(self, type_name):
+        self.cursor.execute("SELECT COUNT(*) FROM Places WHERE type = ?", 
+                            (type_name,))
+        count_type = self.cursor.fetchone()[0]
+        return count_type
+    
+    """Total area"""
+    
+    def total_typage_area(self, type_name, subtype_name):
+        self.cursor.execute("SELECT SUM(area) FROM Places WHERE type = ? AND subtype = ?", 
+                            (type_name, subtype_name))
+        total_typage_area = self.cursor.fetchone()[0]
+        return total_typage_area 
+    
+    def total_type_area(self, type_name):
+        self.cursor.execute("SELECT SUM(area) FROM Places WHERE type = ?", 
+                            (type_name,))
+        total_type_area = self.cursor.fetchone()[0]
+        return total_type_area 
+        
+    
+
+'''----------------------------------------------------------------> DEPRECATED
+
+from modules.tools.singleton import Singleton
 from modules.tools import distance
 from modules.tools.style import Color
 from random import sample
+
 
 class DataPlace (metaclass=Singleton) :
 
@@ -578,3 +729,5 @@ class DataPlace (metaclass=Singleton) :
 
         def __repr__(self) :
             return self.__str__(typage=True)
+
+'''
