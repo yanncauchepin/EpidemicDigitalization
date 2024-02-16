@@ -31,7 +31,6 @@ Before running this code, ensure you have the following :
 
 ## To do list ##
 
-- [ ] Check and upgrade code.
-- [ ] Complete a to do list.
+- [ ] DEPRECATED code to adapt to good developer uses.
+- [ ] Store data in sql.
 - [ ] Complete README.
-- [ ] Adapt the repository to well developer traditions.

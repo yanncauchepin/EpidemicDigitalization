@@ -1,0 +1,59 @@
+\documentclass[a4paper, 12pt]{report}
+
+\usepackage[T1]{fontenc}
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+\usepackage{comfortaa}
+\usepackage[latin1]{inputenc}
+\usepackage[english]{babel} % for language
+\usepackage[top=2.8cm, left=2.8cm, right=2.8cm, bottom=2.8cm]{geometry} % for border paper
+\usepackage{hyperref} % for link href
+\usepackage{graphicx}% for pictures
+\usepackage{subcaption} % for many pictures in a figure 
+\usepackage[tight]{shorttoc} % for summary
+
+\usepackage{sectsty}  %change font sectioning
+\sectionfont{\comfortaa}
+\chapterfont{\comfortaa}
+\subsectionfont{\comfortaa}
+
+\usepackage{caption}
+    \DeclareCaptionFormat{legend}{#3}
+    \captionsetup{format = legend, font = it}
+
+\usepackage{etoolbox}% http://ctan.org/pkg/etoolbox
+\makeatletter
+\patchcmd{\@makechapterhead}{\vspace*{50\p@}}{}{}{}% Removes space above \chapter head
+\patchcmd{\@makeschapterhead}{\vspace*{50\p@}}{}{}{}% Removes space above \chapter* head
+\makeatother
+
+\usepackage{wrapfig}
+
+\setlength{\parindent}{0pt} %Remove space in the beginning of each paragraph
+%\usepackage{parskip}  %for more  option concerning paragraph
+
+\begin{document}
+
+	\begin{comfortaa}
+	\input{chapter/title_page}
+	\large
+	\shorttoc{\comfortaa Interactive Summary}{3}
+	\end{comfortaa}
+
+	\large
+
+	\input{chapter/introduction}
+	\input{chapter/static_digitalization}
+	\input{chapter/dynamic_digitalization}
+	\input{chapter/infectious_dynamics}
+	\input{chapter/digitalization_exploitation}
+	\input{chapter/illustrative_application}
+	\input{chapter/environmental_complexities}
+	\input{chapter/approval_data}
+	\input{chapter/combinatorial_decisions}
+	\input{chapter/calculations_parallelization}
+	\input{chapter/development_prospects}
+	\input{chapter/questioning_intelligence}
+	\input{chapter/projection}
+	\input{chapter/thanks}
+
+\end{document}
