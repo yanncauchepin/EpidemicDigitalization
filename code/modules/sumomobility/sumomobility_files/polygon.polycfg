@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/polyconvertConfiguration.xsd">
+    <input>
+        <net-file value="network.net.xml"/>
+        <osm-files value="/home/yanncauchepin/Git/PublicProjects/EpidemicDigitalization/code/datasets/openstreetmap/belval.osm.xml"/>
+        <osm.keep-full-type value="true"/>
+        <shapefile.add-param value="true"/>
+        <type-file value="/home/yanncauchepin/Git/PublicProjects/EpidemicDigitalization/code/<_io.TextIOWrapper name='/home/yanncauchepin/Git/PublicProjects/EpidemicDigitalization/code/modules/sumomobility/sumomobility_files/polygon.types.xml' mode='w' encoding='UTF-8'>"/>
+    </input>
+    <output>
+        <output-file value="/home/yanncauchepin/Git/PublicProjects/EpidemicDigitalization/code/modules/sumomobility/sumomobility_files/polygons.poly.xml"/>
+    </output>
+    <report>
+        <verbose value="true"/>
+    </report>
+</configuration>
+        
