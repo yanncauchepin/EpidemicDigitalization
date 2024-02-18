@@ -130,11 +130,11 @@ class DataPlaces(metaclass=Singleton):
         self.__end_connection_db()
         return type_places
     
-    def get_id_place(self, id_key):
+    def get_place(self, id_key):
         self.__start_connection_db()
         self.cursor.execute("SELECT * FROM Places WHERE id = ? ", 
                             (id_key,))
-        id_place = self.cursor.fetchall()
+        id_place = self.cursor.fetchone()
         self.__end_connection_db()
         return id_place
     

@@ -86,7 +86,7 @@ class DataIndividualInfections(metaclass=Singleton):
             else:
                 print(f"{Color.RED}Warning:{Color.RESET} Infection {infection_name} "
                       "does not exist in the infections database.")
-        existing_individual = self.dataindividuals.get_id_individual(individual_id)
+        existing_individual = self.dataindividuals.get_individual(individual_id)
         if not existing_individual:
             check_conditions = False
             if self.raise_error_on_duplicate_id:
@@ -128,7 +128,7 @@ class DataIndividualInfections(metaclass=Singleton):
         self.connection.close()
         self.__end_connection_db()
         
-    """ Get individual infections """
+    """Get individual infections"""
         
     def get_all_individual_infections(self, infection_name):
         self.__start_connection_db()
@@ -145,4 +145,21 @@ class DataIndividualInfections(metaclass=Singleton):
         indivual_infection = self.cursor.fetchall()
         self.__end_connection_db()
         return indivual_infection
+    
+    """Count individual infections"""
+    
+    def count_individual_infections(self):
+        self.__start_connection_db()
+        self.cursor.execute("SELECT COUNT(*) FROM IndividualInfections")
+        count_all = self.cursor.fetchone()[0]
+        self.__end_connection_db()
+        return count_all
+    
+    def count_individual_infections_by_infection(self, name):
+        self.__start_connection_db()
+        self.cursor.execute("SELECT COUNT(*) FROM IndividualInfections WHERE infection_name = ?", 
+                            (name,))
+        count_infection = self.cursor.fetchone()[0]
+        self.__end_connection_db()
+        return count_infection
      

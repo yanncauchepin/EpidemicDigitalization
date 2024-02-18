@@ -12,7 +12,7 @@ else:
 
 
 SUMOFILES = "modules/sumomobility/sumomobility_files"
-OUTPUT = "modules/sumomobility/sumobility_outputs"
+SUMOOUTPUTS = "modules/sumomobility/sumomobility_outputs"
 
 CONFIG_NETWORK = "network.netcfg"
 NETWORK = "network.net.xml"
@@ -30,11 +30,11 @@ PT_TRIPS = "pt.trips.xml"
 PT_ROUTES = "pt.routes.xml"
 PT_VEHICLES = "pt.vehicules.xml"
 
-PEOPLE_TRIPS = "people.trips.xml"
-PEOPLE_TEMP_ROUTES = "people.temp.routes.xml"
-PEOPLE_TEMP_ALT_ROUTES = "people.temp.alt.routes.xml"
-PEOPLE_ROUTES = "people.routes.xml"
-CONFIG_DUAROUTER = "people.duaconfig"
+INDIVIDUALS_TRIPS = "individuals.trips.xml"
+INDIVIDUALS_TEMP_ROUTES = "individuals.temp.routes.xml"
+INDIVIDUALS_TEMP_ALT_ROUTES = "individuals.temp.alt.routes.xml"
+INDIVIDUALS_ROUTES = "individuals.routes.xml"
+CONFIG_DUAROUTER = "individuals.duaconfig"
 
 OUTPUT_TRIP = "tripinfo.xml"
 OUTPUT_TIMESTATE = "timestate.xml"
@@ -45,8 +45,12 @@ CONFIG_SUMO = "spreading.sumocfg"
 class SumomobilityHandler():
 
     def __init__(self, root_path, osm_file, **kwargs) :
-        self.root_path = str(root_path)
         self.osm_file = str(osm_file)
+        self.root_path = str(root_path)
+        os.makedirs(os.path.dirname(f'{SUMOFILES}'), exist_ok=True)
+        os.makedirs(os.path.dirname(f'{SUMOOUTPUTS}'), exist_ok=True)
+        self.clear_files()
+        
 
     def run_day (self, day, verbose=False, **kwargs) :
         day_config_sumo = kwargs.get("config_sumo", f"{SUMOFILES}/{day}.{CONFIG_SUMO}")
@@ -54,7 +58,7 @@ class SumomobilityHandler():
             os.system(f"sumo-gui -c {day_config_sumo}")
         else :
             os.system(f"sumo -c {day_config_sumo}")
-            
+
     def init_network (self, **kwargs) :
         config_network = kwargs.get("config_network", f"{SUMOFILES}/{CONFIG_NETWORK}")
         network = kwargs.get("network", f"{SUMOFILES}/{NETWORK}")
@@ -86,24 +90,24 @@ class SumomobilityHandler():
     def init_day_config_sumomobility (self, day, **kwargs) :
         self.__set_day_config_sumomobility(day, **kwargs)
 
-    def init_day_people_routes(self, day, **kwargs) :
+    def init_day_individuals_routes(self, scriptshandler, day, **kwargs) :
         path = self.root_path
         #network
-        day_people_trips = kwargs.get("day_people_trips", f"{SUMOFILES}/{day}.{PEOPLE_TRIPS}")
-        day_people_temp_routes = kwargs.get("day_people_temp_routes", f"{SUMOFILES}/{day}.{PEOPLE_TEMP_ROUTES}")
-        day_people_temp_alt_routes = kwargs.get("day_people_temp_alt_routes", f"{SUMOFILES}/{day}.{PEOPLE_TEMP_ALT_ROUTES}")
-        day_people_routes = kwargs.get("day_people_routes", f"{SUMOFILES}/{day}.{PEOPLE_ROUTES}")
+        day_individuals_trips = kwargs.get("day_individuals_trips", f"{SUMOFILES}/{day}.{INDIVIDUALS_TRIPS}")
+        day_individuals_temp_routes = kwargs.get("day_individuals_temp_routes", f"{SUMOFILES}/{day}.{INDIVIDUALS_TEMP_ROUTES}")
+        day_individuals_temp_alt_routes = kwargs.get("day_individuals_temp_alt_routes", f"{SUMOFILES}/{day}.{INDIVIDUALS_TEMP_ALT_ROUTES}")
+        day_individuals_routes = kwargs.get("day_individuals_routes", f"{SUMOFILES}/{day}.{INDIVIDUALS_ROUTES}")
         day_config_duarouter = kwargs.get("day_config_duarouter", f"{SUMOFILES}/{day}.{CONFIG_DUAROUTER}")
 
-        ScriptsHandler.init_people_trips(file_path=f"{path}/{day_people_trips}", day=day)
+        scriptshandler.init_individuals_trips(f"{path}/{day_individuals_trips}", day)
         self.__set_day_config_duarouter(day, **kwargs)
-        print(f"{Color.CYAN}Building day people routes from day people trips "
-              f"in progress ...{color.RESET}")
+        print(f"{Color.CYAN}Building day individuals routes from day individuals trips "
+              f"in progress ...{Color.RESET}")
         os.system (f"duarouter -c {day_config_duarouter}")
-        #os.system(f"python /usr/share/sumo/tools/route/routecheck.py {network} --fix {day_people_temp_routes}")
-        print(f"{color.CYAN}Ordering day people routes by their time start in "
-              f"progress ...{color.RESET}")
-        os.system(f"python /usr/share/sumo/tools/route/sort_routes.py {day_people_temp_routes} -o {day_people_routes}")
+        #os.system(f"python /usr/share/sumo/tools/route/routecheck.py {network} --fix {day_individuals_temp_routes}")
+        print(f"{Color.CYAN}Ordering day individuals routes by their start time in "
+              f"progress ...{Color.RESET}")
+        os.system(f"python /usr/share/sumo/tools/route/sort_routes.py {day_individuals_temp_routes} -o {day_individuals_routes}")
 
     def __set_day_config_sumomobility (self, day, **kwargs) :
         path = self.root_path
@@ -112,10 +116,10 @@ class SumomobilityHandler():
         polygons = kwargs.get("polygons", f"{SUMOFILES}/{POLYGONS}")
         view = kwargs.get("view", f"{SUMOFILES}/{VIEW}")
         pt_stops = kwargs.get("pt_stops", f"{SUMOFILES}/{PT_STOPS}")
-        day_people_routes = kwargs.get("day_people_routes", f"{SUMOFILES}/{day}.{PEOPLE_ROUTES}")
+        day_individuals_routes = kwargs.get("day_individuals_routes", f"{SUMOFILES}/{day}.{INDIVIDUALS_ROUTES}")
         pt_routes = kwargs.get("pt_routes", f"{SUMOFILES}/{PT_ROUTES}")
-        output_trip = kwargs.get("output_trip", f"{OUTPUT}/{day}.{OUTPUT_TRIP}")
-        output_timestate = kwargs.get("output_timestate", f"{OUTPUT}/{day}.{OUTPUT_TIMESTATE}")
+        output_trip = kwargs.get("output_trip", f"{SUMOOUTPUTS}/{day}.{OUTPUT_TRIP}")
+        output_timestate = kwargs.get("output_timestate", f"{SUMOOUTPUTS}/{day}.{OUTPUT_TIMESTATE}")
         threads = kwargs.get("threads", 40)
         file = open(f"{path}/{day_config_sumo}", "w")
         file.write(f'''<?xml version="1.0" encoding="UTF-8"?>
@@ -123,7 +127,7 @@ class SumomobilityHandler():
     <input>
         <net-file value="{path}/{network}" />
         <additional-files value="{path}/{polygons}, {path}/{pt_stops}"/>
-        <route-files value="{path}/{day_people_routes}, {path}/{pt_routes}" />
+        <route-files value="{path}/{day_individuals_routes}, {path}/{pt_routes}" />
     </input>
     <output>
         <tripinfo-output value="{path}/{output_trip}" />
@@ -249,10 +253,10 @@ class SumomobilityHandler():
         path = self.root_path
         day_config_duarouter = kwargs.get("day_config_duarouter", f"{SUMOFILES}/{day}.{CONFIG_DUAROUTER}")
         network = kwargs.get("network", f"{SUMOFILES}/{NETWORK}")
-        day_people_trips = kwargs.get("day_people_trips", f"{SUMOFILES}/{day}.{PEOPLE_TRIPS}")
-        day_people_temp_routes = kwargs.get("day_people_temp_routes", f"{SUMOFILES}/{day}.{PEOPLE_TEMP_ROUTES}")
-        day_people_temp_alt_routes = kwargs.get("day_people_temp_alt_routes", f"{SUMOFILES}/{day}.{PEOPLE_TEMP_ALT_ROUTES}")
-        day_people_routes = kwargs.get("day_people_routes", f"{SUMOFILES}/{day}.{PEOPLE_ROUTES}")
+        day_individuals_trips = kwargs.get("day_individuals_trips", f"{SUMOFILES}/{day}.{INDIVIDUALS_TRIPS}")
+        day_individuals_temp_routes = kwargs.get("day_individuals_temp_routes", f"{SUMOFILES}/{day}.{INDIVIDUALS_TEMP_ROUTES}")
+        day_individuals_temp_alt_routes = kwargs.get("day_individuals_temp_alt_routes", f"{SUMOFILES}/{day}.{INDIVIDUALS_TEMP_ALT_ROUTES}")
+        day_individuals_routes = kwargs.get("day_individuals_routes", f"{SUMOFILES}/{day}.{INDIVIDUALS_ROUTES}")
         pt_stops = kwargs.get("pt_stops" , f"{SUMOFILES}/{PT_STOPS}")
         threads = kwargs.get("threads", 40)
         file = open(f"{path}/{day_config_duarouter}", "w")
@@ -261,11 +265,11 @@ class SumomobilityHandler():
     <input>
         <net-file value="{path}/{network}" />
         <additional-files value="{path}/{pt_stops}"/>
-        <route-files value="{path}/{people_trips}" />
+        <route-files value="{path}/{day_individuals_trips}" />
     </input>
     <output>
-        <output-file value="{path}/{people_temp_routes}"/>
-        <alternatives-output value="{path}/{people_temp_alt_routes}"/>
+        <output-file value="{path}/{day_individuals_temp_routes}"/>
+        <alternatives-output value="{path}/{day_individuals_temp_alt_routes}"/>
     </output>
     <processing>
         <repair value="true"/>
@@ -346,6 +350,12 @@ class SumomobilityHandler():
         file.close()
 
 
-    def clear_files() :
-        pass
-
+    def clear_files(self) :
+        print(f"{Color.CYAN}Cleaning sumomobility files and outputs in progress ...{Color.RESET}")
+        path = self.root_path
+        for file in os.listdir(f'{path}/{SUMOFILES}') :
+            file_path = os.path.join(f'{path}/{SUMOFILES}', f'{file}')
+            os.remove(file_path)
+        for file in os.listdir(f'{path}/{SUMOOUTPUTS}') :
+            file_path = os.path.join(f'{path}/{SUMOOUTPUTS}', f'{file}')
+            os.remove(file_path)

@@ -155,11 +155,11 @@ class DataIndividuals(metaclass=Singleton):
         self.__end_connection_db()
         return type_individuals
     
-    def get_id_individual(self, id_key):
+    def get_individual(self, id_key):
         self.__start_connection_db()
         self.cursor.execute("SELECT * FROM Individuals WHERE id = ? ", 
                             (id_key,))
-        id_individual = self.cursor.fetchall()
+        id_individual = self.cursor.fetchone()
         self.__end_connection_db()
         return id_individual
     

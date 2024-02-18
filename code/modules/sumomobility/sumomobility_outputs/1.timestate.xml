@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2024-02-18 09:40:09 by Eclipse SUMO sumo Version 1.12.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="/home/yanncauchepin/Git/PublicProjects/EpidemicDigitalization/code/modules/sumomobility/sumomobility_files/network.net.xml"/>
+        <route-files value="/home/yanncauchepin/Git/PublicProjects/EpidemicDigitalization/code/modules/sumomobility/sumomobility_files/1.individuals.routes.xml,/home/yanncauchepin/Git/PublicProjects/EpidemicDigitalization/code/modules/sumomobility/sumomobility_files/pt.routes.xml"/>
+        <additional-files value="/home/yanncauchepin/Git/PublicProjects/EpidemicDigitalization/code/modules/sumomobility/sumomobility_files/polygons.poly.xml,/home/yanncauchepin/Git/PublicProjects/EpidemicDigitalization/code/modules/sumomobility/sumomobility_files/pt.stops.xml"/>
+    </input>
+
+    <output>
+        <person-summary-output value="/home/yanncauchepin/Git/PublicProjects/EpidemicDigitalization/code/modules/sumomobility/sumomobility_outputs/1.timestate.xml"/>
+        <tripinfo-output value="/home/yanncauchepin/Git/PublicProjects/EpidemicDigitalization/code/modules/sumomobility/sumomobility_outputs/1.tripinfo.xml"/>
+    </output>
+
+    <processing>
+        <threads value="40"/>
+        <ignore-accidents value="true"/>
+        <collision.action value="teleport"/>
+        <pedestrian.model value="nonInteracting"/>
+    </processing>
+
+    <report>
+        <verbose value="true"/>
+        <no-step-log value="true"/>
+    </report>
+
+    <gui_only>
+        <gui-settings-file value="/home/yanncauchepin/Git/PublicProjects/EpidemicDigitalization/code/modules/sumomobility/sumomobility_files/spreading.view.xml"/>
+        <quit-on-end value="true"/>
+        <start value="true"/>
+    </gui_only>
+
+</configuration>
+-->
+
+<personSummary xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/person_summary_file.xsd">
+</personSummary>

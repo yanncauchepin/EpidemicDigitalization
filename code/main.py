@@ -7,46 +7,54 @@ from modules.infections.data_infections import DataInfections, Infection
 from modules.infections.data_individual_infections import DataIndividualInfections, IndividualInfection
 from modules.infections.init_data_infections import init_infections_database, init_individual_infections_database
 from modules.sumomobility.sumomobility_handler import SumomobilityHandler
+from modules.scripts.data_scripts import DataScripts, Script
+from modules.scripts.init_data_scripts import init_scripts_database
+from modules.scripts.scripts_handler import ScriptsHandler
 import os
 
 
-def set_places_and_roads(dataplaces, dataroads):
+def set_places_and_roads(dataplaces, dataroads, osm_dataset_path):
     dataplaces.create_database()
     dataplaces.reset_database()
     dataroads.create_database()
     dataroads.reset_database()
-    OsmHandler(dataplaces, dataroads).apply_file(osm_path)
-    print(f'{dataplaces.count_places()} Places')
-    print(f'{dataroads.count_roads()} Roads')
+    OsmHandler(dataplaces, dataroads).apply_file(osm_dataset_path)
+    print(f'~> {dataplaces.count_places()} Places')
+    print(f'~> {dataroads.count_roads()} Roads')
     assign_road_place(dataplaces, dataroads)
 
 def set_individuals(dataindividuals):
     dataindividuals.create_database()
     dataindividuals.reset_database()
     init_individuals_database(dataindividuals)
-    print(f"{dataindividuals.count_individuals()} Individuals")
+    print(f"~> {dataindividuals.count_individuals()} Individuals")
     
 def set_infections_and_individual_infections(datainfections, dataindividuals,
                                              dataindividualinfections):
     datainfections.create_database()
     datainfections.reset_database()
     init_infections_database(datainfections)
+    print(f"~> {datainfections.count_infections()} Infections")
     dataindividualinfections.create_database()
     dataindividualinfections.reset_database()
     init_individual_infections_database(datainfections, dataindividuals, dataindividualinfections)
+    print(f"~> {dataindividualinfections.count_individual_infections()} Individual infections")
 
 
 if __name__ == '__main__' :
     
     root_path = os.getcwd()
-    osm_path = 'datasets/openstreetmap/belval.osm.xml'
-    places_database_path = 'databases/data_places.db'
-    roads_database_path = 'databases/data_roads.db'
-    individuals_database_path = 'databases/data_individuals.db'
-    infections_database_path = 'databases/data_infections.db'
-    individual_infections_database_path = 'databases/data_individual_infections.db'
     
-    sumohandler = SumomobilityHandler(root_path, osm_path)
+    osm_dataset_path = '../datasets/belval/openstreetmap/belval.osm.xml'
+    
+    places_database_path = 'modules/places/databases/data_places.db'
+    roads_database_path = 'modules/roads/databases/data_roads.db'
+    individuals_database_path = 'modules/individuals/databases/data_individuals.db'
+    infections_database_path = 'modules/infections/databases/data_infections.db'
+    individual_infections_database_path = 'modules/infection/databases/data_individual_infections.db'
+    scripts_database_path = 'modules/scripts/databases/data_scripts.db'
+    
+    sumohandler = SumomobilityHandler(root_path, osm_dataset_path)
     sumomobility_network_path = sumohandler.init_network()
     sumohandler.init_polygon()
     sumohandler.init_sumomobility_view()
@@ -60,10 +68,25 @@ if __name__ == '__main__' :
                                                         dataindividuals,
                                                         datainfections)
     
-    set_places_and_roads(dataplaces, dataroads)
+    set_places_and_roads(dataplaces, dataroads, osm_dataset_path )
     set_individuals(dataindividuals)
     set_infections_and_individual_infections(datainfections, dataindividuals,
                                              dataindividualinfections)
+    
+    datascripts = DataScripts(scripts_database_path, dataindividuals)
+    datascripts.create_database()
+    datascripts.reset_database()
+
+    day_max = 2
+    day=0
+    scriptshandler = ScriptsHandler(dataplaces, dataindividuals, datascripts)
+    while day < day_max:
+        init_scripts_database(dataplaces, dataindividuals, datascripts, day)
+        print(f"~> {datascripts.count_scripts_by_day(day)} Scripts for day {day}")
+        sumohandler.init_day_individuals_routes(scriptshandler, day)
+        sumohandler.init_day_config_sumomobility(day)
+        sumohandler.run_day(day, verbose=False)
+        day+=1
 
 
 
