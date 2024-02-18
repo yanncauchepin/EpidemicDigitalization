@@ -68,7 +68,7 @@ class SumomobilityHandler():
         else :
             os.system(f"sumo -c {day_config_sumo}")
 
-    def get_output_trips_file(self, **kwargs) :
+    def get_output_trips_file(self, day, **kwargs) :
         output_trip = kwargs.get("output_trip", f"{SUMOOUTPUTS}/{day}.{OUTPUT_TRIP}")
         return output_trip
 
@@ -135,6 +135,7 @@ class SumomobilityHandler():
         output_timestate = kwargs.get("output_timestate", f"{SUMOOUTPUTS}/{day}.{OUTPUT_TIMESTATE}")
         threads = kwargs.get("threads", 40)
         file = open(f"{path}/{day_config_sumo}", "w")
+        # <ignore--accident value='True'/>
         file.write(f'''<?xml version="1.0" encoding="UTF-8"?>
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
     <input>
@@ -148,7 +149,7 @@ class SumomobilityHandler():
     </output>
     <processing>
         <threads value="{threads}" />
-        <ignore-accidents value="True" />
+        <collision.action none />
         <collision.action value="teleport" />
         <pedestrian.model value="nonInteracting" />
     </processing>

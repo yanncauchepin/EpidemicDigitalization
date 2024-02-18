@@ -93,7 +93,7 @@ class DataScripts(metaclass=Singleton):
             # Insert the sript
             self.cursor.execute('''INSERT INTO Scripts (
                 day, individual_id, type, sequence, bool_computed_trips_duration, tags
-                ) VALUES (?, ?, ?, ?, ?)''',
+                ) VALUES (?, ?, ?, ?, ?, ?)''',
             (day, individual_id, type_name, sequence, bool_computed_trips_duration, tags))
             self.connection.commit()
         self.__end_connection_db()

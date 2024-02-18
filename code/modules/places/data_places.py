@@ -3,24 +3,6 @@ from modules.tools.style import Color
 import os
 import sqlite3
 
-class SuboOccupancy() :
-
-    def __init__(self, suboccupancy):
-        self.suboccupancy = suboccupancy
-
-    def __getitem__(self, key) :
-        values = {
-            'start_time' : self.suboccupancy[0],
-            'end_time' : self.suboccupancy[1],
-            'individual_id' : self.suboccupancy[2],
-            }
-        if key in values.keys():
-            return values[key]
-        elif key in ['all', 'values']:
-            return values
-        else:
-            raise KeyError(f"Key '{key}' not found.")
-
 class Place():
 
     def __init__(self, place):
@@ -37,9 +19,8 @@ class Place():
             'location' : [self.place[3], self.place[4]],
             'area' : self.place[5],
             'road_id' : self.place[6],
-            'occupancy' : eval(self.place[7]),
-            'nodes' : eval(self.place[8]),
-            'tags' : eval(self.place[9])
+            'nodes' : self.place[7],
+            'tags' : self.place[8]
             }
         if key in values.keys():
             return values[key]
@@ -74,14 +55,13 @@ class DataPlaces(metaclass=Singleton):
             longitude REAL,
             area REAL,
             road_id INTEGER,
-            occupancy TEXT,
             nodes TEXT,
             tags TEXT
             )''')
         self.__end_connection_db()
 
     def insert_place(self, id_key, type_name, subtype_name, latitude, longitude,
-                     area, road_id=None, occupancy='[]' nodes="None", tags="None"):
+                     area, road_id=None, nodes="None", tags="None"):
         self.__start_connection_db()
         # Check if the id_key already exists
         self.cursor.execute("SELECT id FROM Places WHERE id = ?",
@@ -97,9 +77,9 @@ class DataPlaces(metaclass=Singleton):
         else:
             # Insert the place
             self.cursor.execute('''INSERT INTO Places (
-                id, type, subtype, latitude, longitude, area, road_id, occupancy, nodes, tags
+                id, type, subtype, latitude, longitude, area, road_id, nodes, tags
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)''',
-            (id_key, type_name, subtype_name, latitude, longitude, area, road_id, occupancy, nodes, tags))
+            (id_key, type_name, subtype_name, latitude, longitude, area, road_id, nodes, tags))
             self.connection.commit()
         self.__end_connection_db()
 
@@ -108,16 +88,6 @@ class DataPlaces(metaclass=Singleton):
         # Check if both id exists
         self.cursor.execute('''UPDATE Places SET road_id = ? WHERE id = ?''',
                             (road_id, place_id))
-        self.connection.commit()
-        self.__end_connection_db()
-
-    def assign_occupancy_to_place(self, place_id, occupancy):
-        self.__start_connection_db()
-        # Check if both id exists
-        if not isinstance(occupancy, str):
-            occupancy = str(occupancy)
-        self.cursor.execute('''UPDATE Places SET occupancy = ? WHERE id = ?''',
-                            (occupancy, place_id))
         self.connection.commit()
         self.__end_connection_db()
 
@@ -158,14 +128,6 @@ class DataPlaces(metaclass=Singleton):
         type_places = self.cursor.fetchall()
         self.__end_connection_db()
         return type_places
-
-    def get_occupuation_place(self, id_key):
-        self.__start_connection_db()
-        self.cursor.execute("SELECT occupancy FROM Places WHERE id = ? ",
-                            (id_key,))
-        occupancy_place = eval(self.cursor.fetchone())
-        self.__end_connection_db()
-        return occupancy_place
 
     def get_place(self, id_key):
         self.__start_connection_db()

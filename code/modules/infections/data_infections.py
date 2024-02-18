@@ -40,6 +40,10 @@ class Infection():
 
 class DataInfections(metaclass=Singleton):
     
+    @property
+    def contaminated_states(self):
+        return ("E", "A", "I-", "I+")
+    
     def __init__(self, database_path, raise_error_on_duplicate_id=False) :
         os.makedirs(os.path.dirname(database_path), exist_ok=True) 
         self.database_path = database_path
@@ -154,13 +158,13 @@ class DataInfections(metaclass=Singleton):
         self.__end_connection_db()
         return all_infections
 
-    def get_name_infection(self, name):
+    def get_infection(self, name):
         self.__start_connection_db()
         self.cursor.execute("SELECT * FROM Infections WHERE name = ? ", 
                             (name,))
-        name_infection = self.cursor.fetchall()
+        infection = self.cursor.fetchone()
         self.__end_connection_db()
-        return name_infection
+        return infection
 
     def list_all_names(self):
         self.__start_connection_db()

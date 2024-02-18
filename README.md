@@ -30,7 +30,3 @@ Before running this code, ensure you have the following :
 ## Results ##
 
 ## To do list ##
-
-- [ ] DEPRECATED code to adapt to good developer uses.
-- [ ] Store data in sql.
-- [ ] Complete README.

@@ -11,6 +11,7 @@ from modules.sumomobility.sumomobility_handler import SumomobilityHandler
 from modules.scripts.data_scripts import DataScripts, Script
 from modules.scripts.init_data_scripts import init_scripts_database
 from modules.scripts.scripts_handler import ScriptsHandler
+from modules.places.data_occupancy_places import DataOccupancyPlaces, OccupancyPlace
 import os
 
 
@@ -53,6 +54,8 @@ if __name__ == '__main__' :
     infections_database_path = 'modules/infections/databases/data_infections.db'
     individual_infections_database_path = 'modules/infections/databases/data_individual_infections.db'
     scripts_database_path = 'modules/scripts/databases/data_scripts.db'
+    occupancy_places_database_path = 'modules/places/databases/data_occupancy_places.db'
+    
 
     # init sumomobility
     sumohandler = SumomobilityHandler(root_path, osm_dataset_path)
@@ -75,12 +78,16 @@ if __name__ == '__main__' :
     datascripts = DataScripts(scripts_database_path, dataindividuals)
     datascripts.create_database()
     datascripts.reset_database()
+    dataoccupancyplaces = DataOccupancyPlaces(occupancy_places_database_path, dataplaces) 
+    dataoccupancyplaces.create_database()
+    dataoccupancyplaces.reset_database()
 
     # init digitalization and handlers
     day_max = 2
     day=0
     scriptshandler = ScriptsHandler(dataplaces, dataindividuals, datascripts)
-    infectionshandler = InfectionsHandler(datainfections, dataindividualinfections)
+    infectionshandler = InfectionsHandler(datainfections, dataindividualinfections,
+                                          dataplaces, dataoccupancyplaces, datascripts)
 
     # run digitalization
     while day < day_max:
@@ -91,11 +98,11 @@ if __name__ == '__main__' :
         sumohandler.init_day_config_sumomobility(day)
         sumohandler.run_day(day, verbose=False)
         # get and update output
-        output_trips_file = sumohandler.get_output_trips_file()
+        output_trips_file = sumohandler.get_output_trips_file(day)
         scriptshandler.update_individuals_trips_duration(output_trips_file, day)
-        scriptshandler.update_occupancy_places(day)
-        '''
+        scriptshandler.update_occupancy_places(day, dataoccupancyplaces)
         infectionshandler.update_individual_infections()
+        '''
         dataindividualinfections.count_by_infection_real_state()
         dataindividualinfections.count_by_infection_known_state()
         '''

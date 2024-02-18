@@ -11,7 +11,7 @@
     </output>
     <processing>
         <threads value="40" />
-        <ignore-accidents value="True" />
+        <collision.action none />
         <collision.action value="teleport" />
         <pedestrian.model value="nonInteracting" />
     </processing>
