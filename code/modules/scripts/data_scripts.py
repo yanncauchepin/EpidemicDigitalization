@@ -3,6 +3,23 @@ from modules.tools.style import Color
 import os
 import sqlite3
 
+class Trip():
+    
+    def __init__(self, trip):
+        self.trip = trip
+    
+    def __getitem__(self, key) :
+        values = {
+            'place_id' : self.trip[0],
+            'start_time' : self.trip[1],
+            'end_time' : self.trip[2],
+            }
+        if key in values.keys():
+            return values[key]
+        elif key in ['all', 'values']:
+            return values
+        else:
+            raise KeyError(f"Key '{key}' not found.")
 
 class Script():
     
@@ -15,7 +32,7 @@ class Script():
             'individual_id' : self.script[1],
             'type' : self.script[2],
             'sequence' : eval(self.script[3]),
-            'transport_duration_computed' : self.script[4],
+            'bool_computed_trips_duration' : self.script[4],
             'tags' : self.script[5]
             }
         if key in values.keys():
@@ -51,14 +68,14 @@ class DataScripts(metaclass=Singleton):
             individual_id INTEGER,
             type TEXT,
             sequence TEXT,
-            transport_duration_computed INTEGER,
+            bool_computed_trips_duration INTEGER,
             tags TEXT,
             PRIMARY KEY (day, individual_id)
             )''')
         self.__end_connection_db()
         
     def insert_script(self, day, individual_id, type_name, sequence="[]", 
-                      transport_duration_computed=0, tags="None"):
+                      bool_computed_trips_duration=0, tags="None"):
         self.__start_connection_db()
         
         check_conditions = True
@@ -75,22 +92,24 @@ class DataScripts(metaclass=Singleton):
         if check_conditions == True:
             # Insert the sript
             self.cursor.execute('''INSERT INTO Scripts (
-                day, individual_id, type, sequence, transport_duration_computed, tags
+                day, individual_id, type, sequence, bool_computed_trips_duration, tags
                 ) VALUES (?, ?, ?, ?, ?)''',
-            (day, individual_id, type_name, sequence, transport_duration_computed, tags))
+            (day, individual_id, type_name, sequence, bool_computed_trips_duration, tags))
             self.connection.commit()
         self.__end_connection_db()
             
     def assign_sequence_to_individual_day_script(self, day, individual_id, sequence):
         self.__start_connection_db()
         # Check if both id exists
+        if not isinstance(sequence, str):
+            sequence = str(sequence)
         self.cursor.execute('''UPDATE Scripts SET sequence = ? WHERE day = ? 
                             AND individual_id = ?''',
                             (sequence, day, individual_id))
         self.connection.commit()
         self.__end_connection_db()
         
-    def assign_transport_duration_computed_to_individual_day_script(self, day, individual_id, 
+    def assign_bool_computed_trips_duration_to_individual_day_script(self, day, individual_id, 
                                                                     transport_duration_computed):
         self.__start_connection_db()
         # Check if both id exists

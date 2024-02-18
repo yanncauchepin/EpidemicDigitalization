@@ -1,3 +1,21 @@
+
+
+class InfectionsHandler():
+    
+    def __init__(self, datainfections, dataindividualinfections):
+        self.datainfections = datainfections
+        self.dataindividualinfections = dataindividualinfections
+        
+    def update_individual_infections(self, dataplaces):
+        pass
+    
+    def __update_indivual_infection(self):
+        pass
+        
+
+
+'''----------------------------------------------------------------> DEPRECATED
+
 from Modules.Person import DataPerson
 from Modules.Infection import DataInfection
 from Modules.Place import DataPlace
@@ -100,3 +118,5 @@ def getParticlePersonDuringTime(infection, place, occupency, start, end) :
             visit += 1
         #print(occupency[visit])
     return particles
+
+'''

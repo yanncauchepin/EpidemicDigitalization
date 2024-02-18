@@ -49,8 +49,17 @@ class SumomobilityHandler():
         self.root_path = str(root_path)
         os.makedirs(os.path.dirname(f'{SUMOFILES}'), exist_ok=True)
         os.makedirs(os.path.dirname(f'{SUMOOUTPUTS}'), exist_ok=True)
-        self.clear_files()
-        
+        self.clear_sumomobility_files()
+    
+    def clear_sumomobility_files(self) :
+        print(f"{Color.CYAN}Cleaning sumomobility files and outputs in progress ...{Color.RESET}")
+        path = self.root_path
+        for file in os.listdir(f'{path}/{SUMOFILES}') :
+            file_path = os.path.join(f'{path}/{SUMOFILES}', f'{file}')
+            os.remove(file_path)
+        for file in os.listdir(f'{path}/{SUMOOUTPUTS}') :
+            file_path = os.path.join(f'{path}/{SUMOOUTPUTS}', f'{file}')
+            os.remove(file_path)
 
     def run_day (self, day, verbose=False, **kwargs) :
         day_config_sumo = kwargs.get("config_sumo", f"{SUMOFILES}/{day}.{CONFIG_SUMO}")
@@ -58,6 +67,10 @@ class SumomobilityHandler():
             os.system(f"sumo-gui -c {day_config_sumo}")
         else :
             os.system(f"sumo -c {day_config_sumo}")
+
+    def get_output_trips_file(self, **kwargs) :
+        output_trip = kwargs.get("output_trip", f"{SUMOOUTPUTS}/{day}.{OUTPUT_TRIP}")
+        return output_trip
 
     def init_network (self, **kwargs) :
         config_network = kwargs.get("config_network", f"{SUMOFILES}/{CONFIG_NETWORK}")
@@ -348,14 +361,3 @@ class SumomobilityHandler():
 </viewsettings>
         ''')
         file.close()
-
-
-    def clear_files(self) :
-        print(f"{Color.CYAN}Cleaning sumomobility files and outputs in progress ...{Color.RESET}")
-        path = self.root_path
-        for file in os.listdir(f'{path}/{SUMOFILES}') :
-            file_path = os.path.join(f'{path}/{SUMOFILES}', f'{file}')
-            os.remove(file_path)
-        for file in os.listdir(f'{path}/{SUMOOUTPUTS}') :
-            file_path = os.path.join(f'{path}/{SUMOOUTPUTS}', f'{file}')
-            os.remove(file_path)

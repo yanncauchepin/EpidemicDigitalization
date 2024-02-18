@@ -1,17 +1,18 @@
 from modules.tools.style import Color
-from modules.scripts.data_scripts import Script
-from modules.places.data_places import Place
+from modules.scripts.data_scripts import Script, Trip
+from modules.places.data_places import Place, SubOccupancy
 from collections import defaultdict
 
 
 class ScriptsHandler():
-    
-    def __init__(self, dataplaces, dataindividuals, datascripts, 
+
+    def __init__(self, dataplaces, dataindividuals, datascripts,
                  raise_error_related_script_not_exists=False):
         self.dataplaces = dataplaces
         self.dataindividuals = dataindividuals
         self.datascripts = datascripts
         self.raise_error_related_script_not_exists = raise_error_related_script_not_exists
+        self.remove_trip_not_visited = remove_trip_not_visited
 
     def init_individuals_trips(self, file, day):
         file = open(file, "w")
@@ -32,7 +33,7 @@ class ScriptsHandler():
                                                         script, transport)
         file.write('\n</routes>')
         file.close()
-        
+
     def __init_individual_trip_from_script(self, file, individual_id, day, script, transport):
         sequence = Script(script)['sequence']
         if len(sequence)>2:
@@ -41,19 +42,14 @@ class ScriptsHandler():
             while trip < length:
                 file.write(f'\n\t\t<person id="{individual_id}#{trip}" depart="{sequence[trip][1]}" >')
                 origin_place_road_id = Place(self.dataplaces.get_place(sequence[trip][0]))['road_id']
-                destination_place_road_id = Place(self.dataplaces.get_place(sequence[trip+1][0]))['road_id'] 
+                destination_place_road_id = Place(self.dataplaces.get_place(sequence[trip+1][0]))['road_id']
                 file.write(f'\n\t\t\t\t<personTrip from="{origin_place_road_id}"'
                            ' to="{destination_place_road_id}" modes="{transport}" />')
                 file.write('\n\t\t</person>')
                 trip+=1
-                
-    """"""
-    
-    def compute_individuals_time_places(self, day):
-        pass
-    
-    def __compute_individuals_trips_duration(self, tripinfo_file, day):
-        trips = defaultdict(list)
+
+    def update_individuals_trips_duration(self, tripinfo_file, day):
+        duration_trips = defaultdict(dict)
         reader = open(f'{tripinfo_file}', 'r')
         buffer = reader.readline().split()
         while len(buffer)>0:
@@ -61,22 +57,36 @@ class ScriptsHandler():
                 individual_id, trip = self.__get_tag_from_tripinfo_split_buffer(buffer, 'id').split('#')
                 buffer = reader.readline().split()
                 transport_duration = self.__get_tag_from_tripinfo_split_buffer(buffer, 'duration')
-                self.__compute_individual_trip_duration_(individual_id, trip, transport_duration)
+                duration_trips[individual_id][trip] = transport_duration
             buffer = reader.readline().split()
-                    
-    '''
-                 person, trip = getTagFromBuffer(buffer, "id").split("#")
-                 buffer = reader.readline().split()
-                 transport_duration = getTagFromBuffer(buffer, "duration")
-                 trips[int(person)].append([int(trip), float(transport_duration)])
-                 print(f"{person} : trip n°{trip}, {transport_duration} seconds")
-         buffer = reader.readline()
-     return trips
-    '''
-    
-    def __compute_individual_trip_duration(self, individual_id, trip, duration):
-        pass
-                    
+        if list(duration_trips.keys())>1:
+            for individual_id in list(duration_trips.keys()):
+                self.__update_individual_trip_duration_(day, individual_id, duration_trips[individual_id])
+
+    def __update_individual_trip_duration(self, day, individual_id, trips_duration_dict):
+        script = self.datascripts.get_individual_day_script(day, individual_id)
+        sequence = Script(script)['sequence'].copy.deepcopy()
+        place_trips_index_not_visited = list()
+        for trip in range(len(trips_duration_dict.keys())):
+            time_after_transport = Trip(sequence[trip])['end_time']+trips_duration_dict[trip]
+            sequence[trip+1][1] = int(time)
+            # raise warning if start_time is higher than end_time and delete trip
+            duration = Trip(sequence[trip])['end_time'] - Trip(sequence[trip])['start_time']
+            if duration < 0 :
+                print(f"{color.RED}Warning :{color.RESET} Individual id {individual_id} "
+                      f"has not really visited place id {{sequence[trip+1][0]}} "
+                      f"during the day {day}.")
+                time_added_for_transport_to_unvisited_place = duration*-1
+                place_trips_index_not_visited.append([trip+1, time_added_for_transport_to_unvisited_place])
+        for error_trip in reversed(place_trips_index_not_visited):
+            trip_index, added_time = error_trip
+            sequence[trip_index+1][1] += added_time
+            del sequence[trip_index]
+            # support consecutive not visited places
+        self.datascripts.assign_sequence_to_individual_day_script(day, individual_id, sequence)
+        self.datascripts.assign_bool_computed_trips_duration_to_individual_day_script(day, individual_id, 1)
+
+
     def __get_tag_from_tripinfo_split_buffer(self, split_buffer, tag):
         list_ = list()
         for token in split_buffer :
@@ -86,56 +96,25 @@ class ScriptsHandler():
             return list_[list_.index(tag)+1]
         else :
             return None
-    
-    def getPeopleTimePlace(day) :
 
-        dataperson = DataPerson.DataPerson()
-        datascript = DataScript.DataScript()
-        people_transport = getPeopleTripsDuration(day)
-        person_occupation = dict()
-        for person in dataperson.getPeople() :
-            transport = people_transport.get(person)
-            sequence = datascript.getScript(dataperson.getPerson(person).getDayScript(day)).getSequence()
-            for trip in range(len(transport)) :
-                time = sequence[trip][2] + transport[trip][1]
-                sequence[trip+1][1] = int(time)
-                if sequence[trip+1][1] > sequence[trip+1][2] :
-                    sequence[trip+1].append("Error")
-                    print(f"{color.RED}Error :{color.RESET} Person {color.BLUE}{person}{color.RESET} does not occupy place {color.CYAN}{sequence[trip+1][0]}{color.RESET} (trip n°{trip}) during day {color.CYAN}{day}{color.RESET}")
-            person_occupation[person] = sequence
-        return person_occupation
-    
-    def getPeopleTripsDuration(file, day) :
 
-        trips = dict()
-        dataperson = DataPerson.DataPerson()
-        for person in dataperson.getPeople() :
-            trips[person] = list()
-        file = f"Modules/SumoMobility/Report/{day}.tripinfo.xml"
-        reader = open (f"{file}", "r")
-        buffer = reader.readline()
-        while buffer != '' :
-            buffer = buffer.split()
-            if len(buffer) > 0 :
-                if buffer[0] == "<personinfo" :
-                    person, trip = getTagFromBuffer(buffer, "id").split("#")
-                    buffer = reader.readline().split()
-                    transport_duration = getTagFromBuffer(buffer, "duration")
-                    trips[int(person)].append([int(trip), float(transport_duration)])
-                    print(f"{person} : trip n°{trip}, {transport_duration} seconds")
-            buffer = reader.readline()
-        return trips
-    
-    def getTagFromBuffer(buffer, tag) :
+    def update_occupancy_places(self, day):
+        for script in self.datascripts.get_day_scripts(day):
+            individual_id = Script(script)["individual_id"]
+            sequence = Script(script)["sequence"]
+            for trip in sequence:
+                place_id = Trip(trip)['place_id']
+                start_time = Trip(trip)['start_time']
+                end_time = Trip(trip)['end_time']
+                occupancy = self.dataplaces.get_occupuation_place(place_id)
+                occupancy.append([start_time, end_time, individual_id])
+                self.dataplaces.assign_occupancy_to_place(place_id, str(occupancy))
+        # sort occupancy according to start_time
+        for place_id in self.dataplaces.list_all_ids() :
+            occupancy = self.dataplaces.get_occupancy_place(place_id)
+            occupancy = sorted(occupancy, key=lambda x:x[0])
+            self.dataplaces.assign_occupancy_to_place(place_id, str(occupancy))
 
-        extend_buffer = list()
-        for elem in buffer :
-            extend_buffer.extend(elem.split('"'))
-        tag = tag + "="
-        if tag in extend_buffer :
-            return extend_buffer[extend_buffer.index(tag)+1]
-        else :
-            return None
 
 
 '''----------------------------------------------------------------> DEPRECATED
