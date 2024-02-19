@@ -23,10 +23,11 @@ Before running this code, ensure you have the following :
 
 - Python packages described in ***requirements.txt***.
 
-## Usage ##
-
-### Example ###
-
-## Results ##
-
 ## To do list ##
+
+- [ ] Correct sumobility error : can not access to sumo_config in run day sumobility
+- [ ] Set values for init datasets in dataset directory, more precisely in belval
+- [ ] Improve script building, espcially according to individual infections
+- [ ] Improve infections update
+- [ ] Define combinatorial decisions which mostly impact scripts
+- [ ] Generate daily infections scores for the beginning
