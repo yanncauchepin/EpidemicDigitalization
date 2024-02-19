@@ -45,7 +45,7 @@ class ScriptsHandler():
                 origin_place_road_id = Place(self.dataplaces.get_place(sequence[trip][0]))['road_id']
                 destination_place_road_id = Place(self.dataplaces.get_place(sequence[trip+1][0]))['road_id']
                 file.write(f'\n\t\t\t\t<personTrip from="{origin_place_road_id}"'
-                           ' to="{destination_place_road_id}" modes="{transport}" />')
+                           f' to="{destination_place_road_id}" modes="{transport}" />')
                 file.write('\n\t\t</person>')
                 trip+=1
 

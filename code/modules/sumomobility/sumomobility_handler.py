@@ -75,10 +75,10 @@ class SumomobilityHandler():
         self.config_sumo = kwargs.get("config_sumo", CONFIG_SUMO)
         self.view = kwargs.get("view", VIEW)
         self.threads = kwargs.get("threads", 40)
-        self.output_timestate = kwargs.get("output_timestate", OUTPUT_TIMESTATE)
         self.view = kwargs.get("view", VIEW)
         self.delay = kwargs.get("delay", 10)
                 
+        self.output_timestate = kwargs.get("output_timestate", OUTPUT_TIMESTATE)
         self.output_trip = kwargs.get("output_trip", OUTPUT_TRIP)
         
         os.makedirs(os.path.dirname(os.path.join(self.root, self.sumo_files)), exist_ok=True)
@@ -96,7 +96,7 @@ class SumomobilityHandler():
             os.remove(file_path)
 
 
-    def run_day (self, day, verbose=False) :
+    def run_day (self, day, verbose=True) :
         day_config_sumo = f'{day}.{self.config_sumo}'
         day_config_sumo_ = os.path.join(self.root, self.sumo_files, day_config_sumo)
         if verbose == True :
@@ -106,12 +106,12 @@ class SumomobilityHandler():
 
 
     def get_day_output_trips_file(self, day) :
-        day_output_trip = f'{day}.{self.config_sumo}'
-        day_output_trip_ = os.path.join(self.root, self.sumo_files, day_output_trip)
+        day_output_trip = f'{day}.{self.output_trip}'
+        day_output_trip_ = os.path.join(self.root, self.sumo_outputs, day_output_trip)
         return day_output_trip_
 
 
-    def init_network (self) :
+    def init_network(self):
         config_network_ = os.path.join(self.root, self.sumo_files, self.config_network)
         network_ = os.path.join(self.root, self.sumo_files, self.network)
         self.__set_config_network()
@@ -121,6 +121,7 @@ class SumomobilityHandler():
 
     def init_polygon(self) :
         config_polygon_ = os.path.join(self.root, self.sumo_files, self.config_polygon)
+        self.__set_polygon_type_from_osm()
         self.__set_config_polygon()
         os.system(f"polyconvert -c {config_polygon_}")
 
@@ -148,11 +149,11 @@ class SumomobilityHandler():
 
     def init_day_individuals_routes(self, scriptshandler, day) :
         network_ = os.path.join(self.root, self.sumo_files, self.network)
-        day_individuals_trips = f'{day}.{self.indivudal_trips}'
+        day_individuals_trips = f'{day}.{self.individuals_trips}'
         day_individuals_trips_ = os.path.join(self.root, self.sumo_files, day_individuals_trips)
-        day_individuals_temp_routes = f'{day}.{self.indivudal_temp_routes}'
+        day_individuals_temp_routes = f'{day}.{self.individuals_temp_routes}'
         day_individuals_temp_routes_ = os.path.join(self.root, self.sumo_files, day_individuals_temp_routes)
-        day_individuals_temp_alt_routes = f'{day}.{self.indivudal_temp_alt_routes}'
+        day_individuals_temp_alt_routes = f'{day}.{self.individuals_temp_alt_routes}'
         day_individuals_temp_alt_routes_ = os.path.join(self.root, self.sumo_files, day_individuals_temp_alt_routes)
         day_individuals_routes = f'{day}.{self.individuals_routes}'
         day_individuals_routes_ = os.path.join(self.root, self.sumo_files, day_individuals_routes)
@@ -177,13 +178,13 @@ class SumomobilityHandler():
         polygons_ = os.path.join(self.root, self.sumo_files, self.polygons)
         view_ = os.path.join(self.root, self.sumo_files, self.view)
         pt_stops_ = os.path.join(self.root, self.sumo_files, self.pt_stops)
-        day_individuals_routes = f'{day}.{self.individual_routes}'
+        day_individuals_routes = f'{day}.{self.individuals_routes}'
         day_individuals_routes_ = os.path.join(self.root, self.sumo_files, day_individuals_routes)
         pt_routes_ = os.path.join(self.root, self.sumo_files, self.pt_routes)
         day_output_trip = f'{day}.{self.output_trip}'
-        day_output_trip_ = os.path.join(self.root, self.sumo_files, day_output_trip)
+        day_output_trip_ = os.path.join(self.root, self.sumo_outputs, day_output_trip)
         day_output_timestate = f'{day}.{self.output_timestate}'
-        day_output_timestate_ = os.path.join(self.root, self.sumo_files, day_output_timestate)
+        day_output_timestate_ = os.path.join(self.root, self.sumo_outputs, day_output_timestate)
         threads_ = self.threads
         file = open(day_config_sumo_, "w")
         # <ignore--accident value='True'/>
@@ -230,7 +231,7 @@ class SumomobilityHandler():
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
     <input>
         <type-files value="/usr/share/sumo/data/typemap/osmNetconvert.typ.xml,/usr/share/sumo/data/typemap/osmNetconvertUrbanDe.typ.xml,/usr/share/sumo/data/typemap/osmNetconvertPedestrians.typ.xml"/>
-        <osm-files value="os.path.join(self.root, self.osm)"/>
+        <osm-files value="{self.root}/{self.osm}"/>
     </input>
     <output>
         <output-file value="{network_}"/>
@@ -295,7 +296,7 @@ class SumomobilityHandler():
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/polyconvertConfiguration.xsd">
     <input>
         <net-file value="network.net.xml"/>
-        <osm-files value="os.path.join(self.root, self.osm)"/>
+        <osm-files value="{self.root}/{self.osm}"/>
         <osm.keep-full-type value="true"/>
         <shapefile.add-param value="true"/>
         <type-file value="{polygon_types_}"/>
