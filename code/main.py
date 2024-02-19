@@ -29,18 +29,16 @@ def set_individuals(dataindividuals):
     dataindividuals.create_database()
     dataindividuals.reset_database()
     init_individuals_database(dataindividuals)
-    print(f"~> {dataindividuals.count_individuals()} Individuals")
 
 def set_infections_and_individual_infections(datainfections, dataindividuals,
                                              dataindividualinfections):
     datainfections.create_database()
     datainfections.reset_database()
     init_infections_database(datainfections)
-    print(f"~> {datainfections.count_infections()} Infections")
     dataindividualinfections.create_database()
     dataindividualinfections.reset_database()
     init_individual_infections_database(datainfections, dataindividuals, dataindividualinfections)
-    print(f"~> {dataindividualinfections.count_individual_infections()} Individual infections")
+
 
 
 if __name__ == '__main__' :
@@ -48,13 +46,13 @@ if __name__ == '__main__' :
     # input paths
     root_path = os.getcwd()
     osm_dataset_path = '../datasets/belval/openstreetmap/belval.osm.xml'
-    places_database_path = 'modules/places/databases/data_places.db'
-    roads_database_path = 'modules/roads/databases/data_roads.db'
-    individuals_database_path = 'modules/individuals/databases/data_individuals.db'
-    infections_database_path = 'modules/infections/databases/data_infections.db'
-    individual_infections_database_path = 'modules/infections/databases/data_individual_infections.db'
-    scripts_database_path = 'modules/scripts/databases/data_scripts.db'
-    occupancy_places_database_path = 'modules/places/databases/data_occupancy_places.db'
+    places_database_path = 'databases/data_places.db'
+    roads_database_path = 'databases/data_roads.db'
+    individuals_database_path = 'databases/data_individuals.db'
+    infections_database_path = 'databases/data_infections.db'
+    individual_infections_database_path = 'databases/data_individual_infections.db'
+    scripts_database_path = 'databases/data_scripts.db'
+    occupancy_places_database_path = 'databases/data_occupancy_places.db'
     
 
     # init sumomobility
@@ -93,12 +91,11 @@ if __name__ == '__main__' :
     while day < day_max:
         # configure day
         init_scripts_database(dataplaces, dataindividuals, datascripts, day)
-        print(f"~> {datascripts.count_scripts_by_day(day)} Scripts for day {day}")
         sumohandler.init_day_individuals_routes(scriptshandler, day)
         sumohandler.init_day_config_sumomobility(day)
         sumohandler.run_day(day, verbose=False)
         # get and update output
-        output_trips_file = sumohandler.get_output_trips_file(day)
+        output_trips_file = sumohandler.get_day_output_trips_file(day)
         scriptshandler.update_individuals_trips_duration(output_trips_file, day)
         scriptshandler.update_occupancy_places(day, dataoccupancyplaces)
         infectionshandler.update_individual_infections()
