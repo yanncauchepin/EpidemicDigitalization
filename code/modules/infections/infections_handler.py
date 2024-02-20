@@ -7,15 +7,15 @@ from tqdm import tqdm
 import random
 
 class InfectionsHandler():
-    
-    def __init__(self, datainfections, dataindividualinfections, dataplaces, 
+
+    def __init__(self, datainfections, dataindividualinfections, dataplaces,
                  dataoccupancyplaces, datascripts):
         self.datainfections = datainfections
         self.dataindividualinfections = dataindividualinfections
         self.dataplaces = dataplaces
         self.dataoccupancyplaces = dataoccupancyplaces
         self.datascripts = datascripts
-        
+
     def update_individual_infections(self, day, dataplaces):
         print(f"{Color.CYAN}Updating individual infections with digitalized results "
               f"in progress ...{Color.RESET}")
@@ -28,8 +28,8 @@ class InfectionsHandler():
                         self.__update_indivual_infection(day, infection_name, individual_id)
                         pbar_individuals.update(1)
                 pbar_infections.update(1)
-                        
-    
+
+
     def __update_indivual_infection(self, day, infection_name, individual_id):
         individual_infection = self.dataindividualinfections.get_individual_infection(infection_name, individual_id)
         real_state = IndividualInfection(individual_infection)['real_state']
@@ -46,7 +46,7 @@ class InfectionsHandler():
                      self.__init_infectious_individual_infection()
                      self.dataindividualinfections.assign_incubation_duration_to_individual_infection(
                          infection_name, individual_id, None)
-                     
+
             case 'A', 'I-', 'I+':
                  infection = self.datainfections.get_infection(infection_name)
                  death_threshold = Infection(infection)["death_threshold"]
@@ -81,11 +81,11 @@ class InfectionsHandler():
                  else:
                       self.dataindividualinfections.assign_infection_score_to_individual_infection(
                           infection_name, individual_id, infection_score)
-                      
+
             case _ :
                  pass
 
-    
+
     def __init_infectious_individual_infection(self, day, infection_name, individual_id):
         infection = self.datainfections.get_infection(infection_name)
         mean_gaussian_infection = Infection(infection)["mean_gaussian_infection"]
@@ -134,7 +134,7 @@ class InfectionsHandler():
                 infection_name, individual_id, serious_emission)
             self.dataindividualinfections.assign_immune_reaction_to_individual_infection(
                 infection_name, individual_id, serious_aggravation)
-    
+
     def __update_susceptible_individual_infection(self, current_day, infection_name, individual_id):
         particles = 0
         infection = self.datainfections.get_infection(infection_name)
@@ -149,7 +149,7 @@ class InfectionsHandler():
             infection_name, individual_id, particles)
         if particles>contamination_threshold:
             self.__init_incubation_individual_infection(current_day, infection_name, individual_id)
-            
+
     def __init_incubation_individual_infection(self, current_day, infection_name, individual_id):
         infection = self.datainfections.get_infection(infection_name)
         mean_gaussian_incubation = Infection(infection)["mean_gaussian_incubation"]
@@ -164,24 +164,24 @@ class InfectionsHandler():
             infection_name, individual_id, 'E')
         self.dataindividualinfections.assign_emission_to_individual_infection(
             infection_name, individual_id, incubation_emission)
-    
-    def __compute_sequence_particles(self, day, infection_name, individual_id, 
+
+    def __compute_sequence_particles(self, day, infection_name, individual_id,
                                      place_cumulative_minutes):
         particles = 0
         sequence = Script(self.datascripts.get_individual_day_script(day, individual_id))['sequence']
         for trip in sequence:
             place_id, start_time, end_time = Trip(trip)['all'] # can bug due to non ordered dict
-            proximity_particles = self.__compute_place_particles(day, infection_name, individual_id, 
+            proximity_particles = self.__compute_place_particles(day, infection_name, individual_id,
                                                         place_id, start_time, end_time)
             start_cumulative_time = start_time-place_cumulative_minutes*60
             if start_cumulative_time<0:
                 start_cumulative_time=0
-            suspended_particles = self.__compute_place_particles(day, infection_name, individual_id, 
+            suspended_particles = self.__compute_place_particles(day, infection_name, individual_id,
                                                         place_id, start_cumulative_time, start_time)
             particles += suspended_particles*0.1 + proximity_particles
         return particles
-    
-    def __compute_place_particles(self, day, infection_name, individual_id, place_id, 
+
+    def __compute_place_particles(self, day, infection_name, individual_id, place_id,
                                   start_time, end_time, place_cumulative_minutes):
         occupancyplaces = self.dataoccupancyplaces.get_day_occupancy_place(day, place_id)
         custom_occupancy = OccupancyPlace(occupancyplaces)['occupancy'].copy.deepcopy()
@@ -205,111 +205,10 @@ class InfectionsHandler():
                     if SubOccupancy(custom_occupancy[visit])['start_time']>start_time:
                         temp_start_time = SubOccupancy(custom_occupancy[visit])['start_time']
                     particles += (temp_end_time-temp_start_time) * individual_emission
-                    
+
             visit+=1
         return particles
-            
-            
-            
+
+
+
         
-
-
-'''----------------------------------------------------------------> DEPRECATED
-
-from Modules.Person import DataPerson
-from Modules.Infection import DataInfection
-from Modules.Place import DataPlace
-from Modules.Script import DataScript
-from Modules.Tools import Stats
-from Modules.Tools.Style import color
-
-datainfection = DataInfection.DataInfection()
-dataperson = DataPerson.DataPerson()
-dataplace = DataPlace.DataPlace()
-datascript = DataScript.DataScript()
-
-def assessPeopleInfection(day, infection, occupency_place) :
-
-    infection = datainfection.getInfection(infection)
-    if infection != None :
-        infection = infection.getName()
-        people = dataperson.getPeople()
-        for person in people :
-            #print("getPersonInfectionUpdate")
-            infectious_update = getPersonInfectiousUpdate(day, infection, person, occupency_place)
-            #print("dayUpdate")
-            datainfection.getPersonState(infection, person).dayUpdate(infectious_update)
-
-def getPersonInfectiousUpdate(day, infection, person, occupency_place) :
-
-    #print(f"Person {person}")
-    person_state = datainfection.getPersonState(infection, person)
-    infectious_update = None
-    if person_state != None :
-        state = person_state.getRealState()
-        #print(f"State {state}")
-        if state == "S" :
-            infectious_update = getPersonSusceptibleUpdate(day, infection, person, occupency_place)
-    return infectious_update
-
-def getPersonSusceptibleUpdate(day, infection, person, occupency_place) :
-
-    script = dataperson.getPerson(person).getDayScript(f"default.{day}")
-    sequence = datascript.getScript(script).getSequence()
-    particle = 0
-    for visit in sequence :
-        if visit[-1] != "Error" :
-            place_particle = getParticlePlaceInTime(infection, visit[0], occupency_place[visit[0]], visit[1])
-            people_particle = getParticlePersonDuringTime(infection, visit[0], occupency_place[visit[0]], visit[1], visit[2])
-            particle += Stats.partInt(place_particle*0.1) + people_particle
-    return {"particle" : particle}
-
-def getParticlePlaceInTime(infection, place, occupency, start) :
-
-    place = dataplace.getPlace(place)
-    infection = datainfection.getInfection(infection)
-    if place != None and infection != None :
-        duration = infection.getSecondsCumulPlace()
-        infection = infection.getName()
-        length = len(occupency) - 1
-        visit = 0
-        particles = 0
-        while occupency[visit][0] < start and visit < length :
-            if start - occupency[visit][0] <= duration :
-                state = datainfection.getPersonState(infection, occupency[visit][2]).getState()
-                if state.getName() in ("E", "A", "I-", "I+") :
-                    if occupency[visit][1] > start :
-                        last = start - occupency[visit][0]
-                    else :
-                        last = occupency[visit][1] - occupency[visit][0]
-            visit += 1
-        #print(occupency[visit])
-    return particles
-
-def getParticlePersonDuringTime(infection, place, occupency, start, end) :
-
-    place = dataplace.getPlace(place)
-    infection = datainfection.getInfection(infection)
-    if place != None and infection != None :
-        infection = infection.getName()
-        length = len(occupency) - 1
-        visit = 0
-        particles = 0
-        while occupency[visit][0] <= end and visit < length :
-            if occupency[visit][1] > start :
-                state = datainfection.getPersonState(infection, occupency[visit][2]).getState()
-                if state.getName() in ("E", "A", "I-", "I+") :
-                    if occupency[visit][0] < start :
-                        first = start
-                    else :
-                        first = occupency[visit][0]
-                    if occupency[visit][1] > end :
-                        last = end
-                    else :
-                        last = occupency[visit][1]
-                    particles += (last - first) * state.getEmission()
-            visit += 1
-        #print(occupency[visit])
-    return particles
-
-'''
