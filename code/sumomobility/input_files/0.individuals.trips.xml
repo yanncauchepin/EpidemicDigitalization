@@ -1,0 +1,65 @@
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+		<person id="1#0" depart="0" >
+				<personTrip from="43662107" to="42299163" modes="public" />
+		</person>
+		<person id="1#1" depart="145" >
+				<personTrip from="42299163" to="42299163" modes="public" />
+		</person>
+		<person id="1#2" depart="5625" >
+				<personTrip from="42299163" to="162563271" modes="public" />
+		</person>
+		<person id="1#3" depart="8916" >
+				<personTrip from="162563271" to="42299166" modes="public" />
+		</person>
+		<person id="1#4" depart="9754" >
+				<personTrip from="42299166" to="162562785" modes="public" />
+		</person>
+		<person id="1#5" depart="14187" >
+				<personTrip from="162562785" to="106888004" modes="public" />
+		</person>
+		<person id="1#6" depart="18678" >
+				<personTrip from="106888004" to="69353448" modes="public" />
+		</person>
+		<person id="1#7" depart="24011" >
+				<personTrip from="69353448" to="42299166" modes="public" />
+		</person>
+		<person id="1#8" depart="27227" >
+				<personTrip from="42299166" to="93359226" modes="public" />
+		</person>
+		<person id="1#9" depart="28510" >
+				<personTrip from="93359226" to="28242894" modes="public" />
+		</person>
+		<person id="1#10" depart="33315" >
+				<personTrip from="28242894" to="42299163" modes="public" />
+		</person>
+		<person id="1#11" depart="34316" >
+				<personTrip from="42299163" to="42299166" modes="public" />
+		</person>
+		<person id="1#12" depart="36568" >
+				<personTrip from="42299166" to="162562785" modes="public" />
+		</person>
+		<person id="1#13" depart="37985" >
+				<personTrip from="162562785" to="42299163" modes="public" />
+		</person>
+		<person id="1#14" depart="42476" >
+				<personTrip from="42299163" to="93359226" modes="public" />
+		</person>
+		<person id="1#15" depart="44263" >
+				<personTrip from="93359226" to="28242894" modes="public" />
+		</person>
+		<person id="1#16" depart="47605" >
+				<personTrip from="28242894" to="69353459" modes="public" />
+		</person>
+		<person id="1#17" depart="49125" >
+				<personTrip from="69353459" to="28242894" modes="public" />
+		</person>
+		<person id="1#18" depart="54233" >
+				<personTrip from="28242894" to="106888004" modes="public" />
+		</person>
+		<person id="1#19" depart="56824" >
+				<personTrip from="106888004" to="42299170" modes="public" />
+		</person>
+		<person id="1#20" depart="58891" >
+				<personTrip from="42299170" to="43662107" modes="public" />
+		</person>
+</routes>

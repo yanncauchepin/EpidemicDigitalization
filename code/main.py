@@ -1,3 +1,7 @@
+import os
+import sys
+sys.path.insert(0, os.getcwd())
+
 from modules.places.data_places import DataPlaces, Place
 from modules.roads.data_roads import DataRoads, Road, assign_road_place
 from modules.openstreetmap.osm_handler import OsmHandler
@@ -12,7 +16,6 @@ from modules.scripts.data_scripts import DataScripts, Script
 from modules.scripts.init_data_scripts import init_scripts_database
 from modules.scripts.scripts_handler import ScriptsHandler
 from modules.places.data_occupancy_places import DataOccupancyPlaces, OccupancyPlace
-import os
 
 
 def set_places_and_roads(dataplaces, dataroads, osm_dataset_path):
@@ -82,7 +85,7 @@ if __name__ == '__main__' :
 
     # init digitalization and handlers
     day_max = 2
-    day=0
+    day = 0
     scriptshandler = ScriptsHandler(dataplaces, dataindividuals, datascripts)
     infectionshandler = InfectionsHandler(datainfections, dataindividualinfections,
                                           dataplaces, dataoccupancyplaces, datascripts)

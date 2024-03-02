@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<polygonTypes>
+	<polygonType id="building" name="building" color="0.0,0.0,1.0" layer="1"/>
+</polygonTypes>
